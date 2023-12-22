@@ -14,5 +14,47 @@
 
 {% block content %}
     {{message}}
+    <table class="table mt-2">
+        <thead>
+          <tr>
+            <th scope="col">Inside Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Purchase price</th>
+            <th scope="col">checkbox</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">   
+            {% for item in items  %}
+            <tr>
+                <th scope="row">{{item.inside_number}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.weight}}g</td>
+                <td>{{item.purchase_price}}</td>
+                <td><input type="checkbox"></td>
+              </tr>
+                
+            {% endfor %}  
+        </tbody>
+      </table>
+        
 {% endblock content %}
     
+<div>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">Inside Number</li>
+        <li class="list-group-item">Name</li>
+        <li class="list-group-item">Purchase price </li>
+      </ul>
+</div>
+
+{% for item in items  %}
+<div>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">{{item.inside_number}}</li>
+        <li class="list-group-item">{{item.name}}</li>
+        <li class="list-group-item">{{item.purchase_price}}</li>
+      </ul>
+</div>
+    
+{% endfor %}
