@@ -1,6 +1,15 @@
 #logo{
-    background-color: rgb(38, 38, 153);
+    background-color: #212a54;
     display: flex;
     justify-content: center;
 }
 
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #1739d2;
+}
