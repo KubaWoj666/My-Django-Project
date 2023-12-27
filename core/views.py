@@ -24,4 +24,12 @@ def detail_view(request, pk):
     return render(request, "core/detail.html", context)
 
     
-    
+
+def balance_view(request):
+    items = Item.objects.all()
+
+    context={
+        "items": items
+    }
+    return render(request,  "core/bilans.html", context )
+
