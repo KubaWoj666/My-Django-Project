@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Category, Item
+from .forms import ItemEditForm
 
 
 
@@ -32,4 +33,26 @@ def balance_view(request):
         "items": items
     }
     return render(request,  "core/bilans.html", context )
+
+
+def edit_item_view(request, pk):
+    item = get_object_or_404(Item, id=pk)
+    
+    if request.method == "POST":
+        form = ItemEditForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("detail", item.id)
+    
+    else:
+        form = ItemEditForm(instance=item)
+    
+    context = {
+        "form": form,
+        "item": item
+    }
+
+    return render(request, "core/edit_item.html", context)
+
+
 

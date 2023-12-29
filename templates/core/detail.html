@@ -26,14 +26,14 @@
         <p class="in_num">{{item.inside_number}}</p>
     </div>
     <div class="action">
-      <button type="button" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-primary"><a href="{% url 'edit' item.id %}">Edit</a></button>
       <button type="button" class="btn btn-success">Sell</button>
       <button type="button" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-2">
     <div class="column">
       <div class="col">
         <div class="box-title">
@@ -70,7 +70,7 @@
 
       </div>
     </div>
-  </div>
+</div>
 
 {% endblock content %}
     

@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.forms-control{
+    margin-top: 10px;
+    
+}
+
+#image{
+    margin-top: 10px;
+}
+
+.forms-control-cat{
+   display: flex;
+}
+
+.btn{
+    margin-top: 14px;
+}
