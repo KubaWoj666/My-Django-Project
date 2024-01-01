@@ -3,7 +3,6 @@
 {% load widget_tweaks %}
 
 
-
 {% block css %}
     <link rel="stylesheet" href="{% static 'style/edit.css' %}">
 {% endblock css %}
@@ -90,16 +89,53 @@
                 
             </div>
             <div class="btn">
-                <a href="" class="btn btn-primary">Add Category</a>
+                <!-- <a href="{% url 'add-category' %}?next={{item.id}}" class="btn btn-primary">Add Category</a> -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
             </div>
         </div>
 
-            <button type="submit" class="btn btn-success mt-2">Edit</button>
+            <button type="submit" class="btn btn-success mt-2 mb-5">Edit</button>
         </form>
     </div>
     
   </div>
 </div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <form action="{% url 'add-category' %}" method="POST">
+            {% csrf_token %}
+            <div  id="name" class="forms-control {% if field.errors %} errors {% endif %} ">
+                <label>{{ form.name.label_tag }}</label>
+                {{ form.name.errors }}
+                {% render_field form.name class="form-control border-primary"  name="name" id="id_name"%}
+                <input type="hidden"  name="post_id" value="{{item.id}}">
+                <button type="submit" class="btn btn-success mt-2 mb-5">Save</button>
+            </div>
+          </form>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
 
 <script src="{% static 'js/edit.js' %}"></script>
 {% endblock content %}

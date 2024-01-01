@@ -23,6 +23,7 @@ class Item(models.Model):
     certificate = models.FileField(upload_to="certificate", blank=True, null=True)
     purchase_price = models.DecimalField(max_digits=20, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

@@ -8,7 +8,7 @@
 #logo img{
     
     object-fit: contain;
-    mix-blend-mode: color-burn;
+    /* mix-blend-mode:color-burn; */
 }
 
 

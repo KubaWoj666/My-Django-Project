@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Category, Item
-from .forms import ItemEditForm
+from .forms import ItemEditForm, CategoryForm
 
 
 
@@ -55,4 +55,11 @@ def edit_item_view(request, pk):
     return render(request, "core/edit_item.html", context)
 
 
+def create_category_view(request):
 
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("edit", pk=request.POST.get("post_id"))
+    
