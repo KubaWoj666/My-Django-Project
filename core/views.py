@@ -1,7 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse, HttpResponse
 
 from .models import Category, Item
 from .forms import ItemEditForm, CategoryForm
+
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
 
@@ -37,6 +42,7 @@ def balance_view(request):
 
 def edit_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
+    category_form = CategoryForm()
     
     if request.method == "POST":
         form = ItemEditForm(request.POST, request.FILES, instance=item)
@@ -49,17 +55,36 @@ def edit_item_view(request, pk):
     
     context = {
         "form": form,
-        "item": item
+        "item": item,
+        "category_form": category_form
     }
 
     return render(request, "core/edit_item.html", context)
 
 
 def create_category_view(request):
+    form = CategoryForm(request.POST or None)
+    data = {}
 
-    if request.method == "POST":
-        form = CategoryForm(request.POST)
+    if is_ajax(request=request):
         if form.is_valid():
+            print("opa")
             form.save()
-            return redirect("edit", pk=request.POST.get("post_id"))
+            data["category_name"] = form.cleaned_data.get("category_name")
+            data["status"] = 'ok'
+            print(data)
+            return JsonResponse(data)
     
+    return JsonResponse({})
+
+
+def get_categories(request):
+    categories = Category.objects.all().values('id', 'category_name')
+    print(categories)
+    return JsonResponse(list(categories), safe=False)
+    
+        
+    
+
+
+

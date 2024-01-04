@@ -11,6 +11,7 @@ class ItemEditForm(forms.ModelForm):
 
 
 class CategoryForm(forms.ModelForm):
+    category_name = forms.CharField(max_length=100,  widget=forms.TextInput(attrs={"placeholder": "Enter a new category"}))
     class Meta:
         model = Category
-        fields = ["name"]
+        fields = ["category_name"]

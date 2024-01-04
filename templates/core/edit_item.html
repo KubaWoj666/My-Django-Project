@@ -24,7 +24,7 @@
       <h5 class="card-title">{{item.name}}</h5>
     </div>
     <div>
-        <form method="post" enctype="multipart/form-data" >
+        <form  method="post" enctype="multipart/form-data" >
             {% csrf_token %}
 
             <div  id="image" class="forms-control {% if field.errors %} errors {% endif %} ">
@@ -104,7 +104,7 @@
 </div>
 
 
-
+<!-- MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -114,15 +114,15 @@
         </div>
         <div class="modal-body">
   
-          <form action="{% url 'add-category' %}" method="POST">
+          <form id="category_form" method="POST" action="{% url 'add-category' %}" >
             {% csrf_token %}
             <div  id="name" class="forms-control {% if field.errors %} errors {% endif %} ">
-                <label>{{ form.name.label_tag }}</label>
-                {{ form.name.errors }}
-                {% render_field form.name class="form-control border-primary"  name="name" id="id_name"%}
-                <input type="hidden"  name="post_id" value="{{item.id}}">
-                <button type="submit" class="btn btn-success mt-2 mb-5">Save</button>
+                <label>{{ category_form.category_name.label_tag }}</label>
+                {{ category_form.category_name.errors }}
+                {% render_field category_form.category_name class="form-control border-primary"  name="category_name_input" id="category_name"%}
             </div>
+                <input type="hidden"  name="post_id" value="{{item.id}}">
+                <button id="save_btn" type="submit" class="btn btn-success mt-2 mb-5">Save</button>
           </form>
   
         </div>
@@ -133,11 +133,24 @@
       </div>
     </div>
   </div>
+
+  <!-- <a href= "{% url 'get-categories' %}"></a>
+
+
+<script>
+    // Przypisz wynikowy URL do zmiennej JavaScript
+    var categoryUrl = "{% url 'get-categories' %}";
   
+    // Możesz użyć tej zmiennej URL w swoim skrypcie JavaScript
+    console.log(categoryUrl);
+  </script>
+   -->
 
 
 
 <script src="{% static 'js/edit.js' %}"></script>
+
+<!-- {{ "{% url 'get-categories' %}"|json_script:"category_url"}} -->
 {% endblock content %}
 
 

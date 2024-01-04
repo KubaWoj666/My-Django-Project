@@ -7,6 +7,8 @@ urlpatterns = [
     path("edit/<uuid:pk>/", views.edit_item_view, name="edit"),
     path("balance/", views.balance_view, name="balance"),
 
-    path("add-category", views.create_category_view, name="add-category")
+    path("add-category", views.create_category_view, name="add-category"),
+    path('get-categories/', views.get_categories, name='get-categories'),
+
 
 ]
