@@ -18,7 +18,7 @@
 <div class="container">
 <div class="card border-0" style="width: 40rem;">
     <div id="image_box">
-        <img id="image" src="{{item.image.url}}" class="card-img-top" alt="...">
+        <img id="image" src="{% static 'images/empty_f.jpeg' %}" class="card-img-top" alt="...">
     </div>
     <div class="card-body">
       <h5 class="card-title">{{item.name}}</h5>
@@ -43,6 +43,21 @@
                 <label>{{ form.name.label_tag }}</label>
                 {{ form.name.errors }}
                 {% render_field form.name class="form-control border-primary"  name="name" id="id_name"%}
+            </div>
+
+            <div class="forms-control-cat">
+                <div  id="category" class="forms-control {% if field.errors %} errors {% endif %} ">
+                    <label>{{ form.category.label_tag }}</label>
+                    {{ form.category.errors }}
+                    {% render_field form.category class="form-control border-primary"  name="category" id="id_category"%}
+                    
+                </div>
+                <div class="btn">
+                    <!-- <a href="{% url 'add-category' %}?next={{item.id}}" class="btn btn-primary">Add Category</a> -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        New Category
+                      </button>
+                </div>
             </div>
 
             <div  id="setting" class="forms-control {% if field.errors %} errors {% endif %} ">
@@ -81,22 +96,7 @@
                 {% render_field form.certificate class="form-control border-primary"  name="certificate" id="id_certificate"%}
             </div>
 
-            <div class="forms-control-cat">
-            <div  id="category" class="forms-control {% if field.errors %} errors {% endif %} ">
-                <label>{{ form.category.label_tag }}</label>
-                {{ form.category.errors }}
-                {% render_field form.category class="form-control border-primary"  name="category" id="id_category"%}
-                
-            </div>
-            <div class="btn">
-                <!-- <a href="{% url 'add-category' %}?next={{item.id}}" class="btn btn-primary">Add Category</a> -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    New Category
-                  </button>
-            </div>
-        </div>
-
-            <button type="submit" class="btn btn-success mt-2 mb-5">Edit</button>
+            <button type="submit" class="btn btn-success mt-2 mb-5">Save</button>
         </form>
     </div>
     

@@ -22,7 +22,6 @@
             <th scope="col">Name</th>
             <th scope="col">Weight</th>
             <th scope="col">Purchase price</th>
-            <th scope="col">checkbox</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">   
@@ -32,7 +31,6 @@
                 <td><a href="{% url 'detail' item.id %}">{{item.name}}</a></td>
                 <td>{{item.weight}}g</td>
                 <td>{{item.purchase_price}}</td>
-                <td><input type="checkbox"></td>
               </tr>
             </a>
             

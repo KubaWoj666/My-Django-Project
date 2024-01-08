@@ -1,10 +1,19 @@
 
+
+
+window.addEventListener('beforeunload', function (e) {
+    var confirmationMessage = 'Czy na pewno chcesz opuścić stronę? Wprowadzone dane mogą zostać utracone.';
+    (e || window.e).returnValue = confirmationMessage;
+    return confirmationMessage;
+});
+    
+
+
 const counterDiv = document.querySelector(".counter");
 const checkboxes = document.querySelectorAll("#checkbox");
 const tableBody = document.querySelector(".table-group-divider");
 
 let count = checkboxes.length;
-console.log(count);
 
 counterDiv.innerHTML += `<h1>${count}</h1>`;
 
