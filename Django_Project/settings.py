@@ -45,11 +45,12 @@ INSTALLED_APPS = [
     'core',
 
     #3rd patry
-    "crispy_forms", 
-    "crispy_bootstrap5",
+    'crispy_forms', 
+    'crispy_bootstrap5',
     'bootstrap5',
     'widget_tweaks',
-    "django_htmx",
+    'django_htmx',
+    'import_export',
     
 
 ]

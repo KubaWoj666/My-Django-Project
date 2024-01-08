@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+# app_name = "core"
+
 urlpatterns = [
     path("", views.home_view, name="home"),
     path("create-item/", views.create_item_view, name="create-item"),
@@ -11,6 +13,8 @@ urlpatterns = [
 
     path("add-category", views.create_category_view, name="add-category"),
     path('get-categories/', views.get_categories, name='get-categories'),
+
+    path("test/", views.PostListView.as_view(), name="test"),
 
 ]
 

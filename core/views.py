@@ -1,9 +1,11 @@
+from typing import Any
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse, HttpResponse
-from django.urls import reverse
+from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.views.generic import ListView, FormView
 
 from .models import Category, Item
-from .forms import ItemEditForm, CategoryForm
+from .forms import ItemEditForm, CategoryForm, FormatForm
+from .admin import ItemResources
 from django_htmx.http import HttpResponseClientRefresh, HttpResponseClientRedirect
 
 
@@ -111,6 +113,24 @@ def get_categories(request):
     
         
     
+class PostListView(ListView, FormView):
+    model = Item
+    template_name = "core/test.html"
+    form_class = FormatForm
+
+    def post(self, request, **kwargs):
+        qs = self.get_queryset()
+        data_set = ItemResources().export(qs)
+
+        format = request.POST.get("format")
+
+        
+        ds = data_set.xls
+        
+        response = HttpResponse(ds, content_type=f"{format}")
+        response["Content-Disposition"] = f"attachment; filename=item.{format}"
+        return response
+
 
 
 
