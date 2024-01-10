@@ -46,3 +46,22 @@ checkboxes.forEach((checkbox) =>
 );
 
 
+const saveButton = document.querySelector(".btn-primary");
+const form = document.querySelector("form");
+
+saveButton.addEventListener("click", function () {
+  // Zbierz zaznaczone checkboxy
+  const selectedItems = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+
+  // Zaktualizuj formularz, aby przesłać tylko zaznaczone elementy
+  selectedItems.forEach((item) => {
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "selected_items";
+    hiddenInput.value = item.value;
+    form.appendChild(hiddenInput);
+    console.log(item)
+  });
+});
+
+

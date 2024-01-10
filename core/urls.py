@@ -15,6 +15,7 @@ urlpatterns = [
     path('get-categories/', views.get_categories, name='get-categories'),
 
     path("test/", views.PostListView.as_view(), name="test"),
+    path("balance-to-excel/", views.balance_to_excel_view, name="balance-to-excel")
 
 ]
 

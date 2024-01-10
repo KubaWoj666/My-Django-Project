@@ -84,6 +84,23 @@ def delete_item_view(request, pk):
 def balance_view(request):
     items = Item.objects.all()
 
+    if request.method == "POST":
+        ids = request.POST.getlist("checkbox_items")
+        if ids:
+            for id in ids:
+                qs = items.exclude(id=id)
+        else:
+            qs = items
+
+        data_set = ItemResources().export(qs)
+        format = request.POST.get("format")
+
+        ds = data_set.xls
+        response = HttpResponse(ds, content_type=f"{format}")
+        response["Content-Disposition"] = f"attachment; filename=item.{format}"
+        return response
+
+
     context={
         "items": items
     }
@@ -113,23 +130,7 @@ def get_categories(request):
     
         
     
-class PostListView(ListView, FormView):
-    model = Item
-    template_name = "core/test.html"
-    form_class = FormatForm
 
-    def post(self, request, **kwargs):
-        qs = self.get_queryset()
-        data_set = ItemResources().export(qs)
-
-        format = request.POST.get("format")
-
-        
-        ds = data_set.xls
-        
-        response = HttpResponse(ds, content_type=f"{format}")
-        response["Content-Disposition"] = f"attachment; filename=item.{format}"
-        return response
 
 
 
