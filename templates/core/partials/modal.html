@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{item.id}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'create-sale' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" value="{{item.id}}">
+            <div  id="name" class="forms-control {% if field.errors %} errors {% endif %} ">
+              <label>{{ sale_form.price.label_tag }}</label>
+              {{ sale_form.price.errors }}
+              {% render_field sale_form.price class="form-control border-primary"  name="price_input" id="price"%}
+            </div>
+            <button type="submit" class="btn btn-success">Sell</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -25,13 +25,17 @@
         </thead>
         <tbody class="table-group-divider">   
             {% for item in items  %}
-            <tr>
-                <th scope="row">{{item.inside_number}}</th>
-                <td><a href="{% url 'detail' item.id %}">{{item.name}}</a></td>
-                <td>{{item.weight}}g</td>
-                <td>{{item.purchase_price}}</td>
-              </tr>
-            </a>
+            
+            {% if  not item.sold  %}<tr>
+              <th scope="row">{{item.inside_number}}</th>
+              <td><a href="{% url 'detail' item.id %}">{{item.name}}</a></td>
+              <td>{{item.weight}}g</td>
+              <td>{{item.purchase_price}}</td>
+            </tr>
+              
+            {% endif %}
+              
+            
             
               
             {% endfor %}  

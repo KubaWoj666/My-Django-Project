@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #local
     'core',
+    'sales',
 
     #3rd patry
     'crispy_forms', 

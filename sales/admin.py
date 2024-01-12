@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Sale
+
+class SalesAdmin(admin.ModelAdmin):
+    list_display = ["item", "created_at", "income"]
+
+admin.site.register(Sale, SalesAdmin)

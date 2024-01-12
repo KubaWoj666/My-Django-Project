@@ -35,6 +35,8 @@
                 </thead>
                 <tbody class="table-group-divider">   
                     {% for item in items  %}
+                    
+                    {% if not item.sold %}
                         <tr>
                             <th scope="row">{{ item.inside_number }}</th>
                             <td><a href="">{{ item.name }}</a></td>
@@ -44,6 +46,7 @@
                                 <input id="checkbox" type="checkbox" name="checkbox_items" value="{{ item.id }}">
                             </td>
                         </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

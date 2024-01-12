@@ -5,6 +5,7 @@ from django.views.generic import ListView, FormView
 
 from .models import Category, Item
 from .forms import ItemEditForm, CategoryForm, FormatForm
+from sales.forms import SaleForm
 from .admin import ItemResources
 from django_htmx.http import HttpResponseClientRefresh, HttpResponseClientRedirect
 
@@ -26,8 +27,10 @@ def home_view(request):
 def detail_view(request, pk):
 
     item = get_object_or_404(Item, id=pk)
+    sale_form = SaleForm()
 
     context = {
+        "sale_form": sale_form,
         "item": item,
     }
 
