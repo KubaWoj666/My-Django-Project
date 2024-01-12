@@ -12,7 +12,6 @@ def create_sale_view(request):
     if request.method == "POST":
         item_id = request.POST.get("item_id")
         item = get_object_or_404(Item, id=item_id)
-        print(item.sold)
         form = SaleForm(request.POST or None)
         if form.is_valid():
             sale = form.save(commit=False)
