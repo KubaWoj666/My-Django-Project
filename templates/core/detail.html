@@ -29,9 +29,14 @@
     <div class="action">
       <button type="button" class="btn btn-primary"><a href="{% url 'edit' item.id %}">Edit</a></button>
       
+      
+      {% if not  item.sold %}
       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Sell
       </button>
+      {% endif %}
+        
+      
       
       <button class="btn btn-danger" hx-delete="{% url 'delete' item.id %}?next={% url 'home'%}" hx-confirm="Are you sure you want to delete this item?" >Delete</button>
       
