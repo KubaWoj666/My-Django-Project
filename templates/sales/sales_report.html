@@ -1,31 +1,101 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
     Sales Report
 {% endblock title %}
+
+
+
     
-
-
 {% block content %}
-<div class="container">
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form|crispy}}
-        <button type="submit" class="btn btn-success">Generate report</button>
-    </form>
+
+<div class="container d-flex justify-content-center align-items-centerm mt-5">
+
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-success">Generate report</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="reports mt-5">
+    {% if sales_df %}
+    <div class="sales_report"> 
+        <h2 class="text-center"><u>Sales Report</u></h2><br>             
+        <table class="table table-dark table-striped"> 
+        <thead> 
+            <tr> 
+            <th>Index</th> 
+            <th>Id</th> 
+            <th>Item</th> 
+            <th>Price</th> 
+            <th>Income</th> 
+            <th>Created_at</th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+        {% if d %}   
+        {% for i in sales_data%} 
+            <tr> 
+            <td>{{i.index}}</td> 
+
+            <td>{{i.id}}</td> 
+            <td>{{i.item}}</td> 
+            <td>{{i.price}}</td> 
+            <td>{{i.income}}</td> 
+            <td>{{i.created_at}}</td> 
+            
+            </tr> 
+        {% endfor %} 
+        {% endif %} 
+        </tbody> 
+        </table> 
+    </div> 
+ 
+    <div class="income_report mt-5"> 
+        <h2 class="text-center"><u>Income Report</u></h2><br>             
+        <table class="table table-dark table-striped"> 
+            <thead> 
+                <tr> 
+                <th>Id</th> 
+                <th>Created_at</th>
+                <th>Item</th> 
+                <th>Income</th>       
+                </tr> 
+            </thead> 
+            <tbody> 
+            {% if d %}   
+            {% for i in d %} 
+                <tr> 
+                <td>{{i.id}}</td> 
+                <td>{{i.created_at}}</td> 
+                <td>{{i.item}}</td> 
+                <td>{{i.income}}</td> 
+                </tr> 
+            {% endfor %} 
+            {% endif %} 
+            </tbody> 
+        </table> 
+    </div> 
+
+    <div class="chart mb-5 m-lg-5">
+        <img src="data:image/png;base64, {{chart|safe}}" alt="chart" id="img">
+    </div>
+
+    {% else %}
+    <div class="message mt-5">
+        <h1>{{message}}</h1>
+    </div>
 </div>
 
 
-{% if sales_df %}
-<div id="my_table" class="mt-2"> 
-    {{ sales_df| safe }} 
-</div>
-
-<img src="data:image/png;base64, {{chart|safe}}" alt="chart" id="img">
 {% endif %}
-    
-
 
 {% endblock content %}
-    
+

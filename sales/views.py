@@ -3,10 +3,11 @@ from django.views.decorators.http import require_POST
 from core.models import Item
 from .models import Sale
 from .forms import SaleForm, SaleSearchForm
-from .utils import get_item_name_by_item_id, get_chart
+from .utils import get_item_name_by_item_id, get_chart, get_graph
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 
 
 
@@ -44,42 +45,57 @@ def get_all_sales_view(request):
 def sales_report(request):
     form = SaleSearchForm()
     sales_df = None
+    chart = None
+    df = None
+    data = None
+    sales_data = None
+    message = ""
     
     if request.method == "POST":
         form = SaleSearchForm(request.POST)
         if form.is_valid():
             date_from = form.cleaned_data.get("date_from")
             date_to = form.cleaned_data.get("date_to")
-
+          
             sales_qs = Sale.objects.filter(created_at__date__gte=date_from, created_at__date__lte=date_to)
-            print(sales_qs)
+            print(len(sales_qs))
 
-            sales_df = pd.DataFrame(sales_qs.values())
-            sales_df["created_at"] = sales_df["created_at"].apply(lambda x: x.strftime("%Y-%m-%d"))
-            sales_df = sales_df.drop("updated_at", axis=1)
-            sales_df.columns = sales_df.columns.str.replace("item_id", "item")
-            sales_df["item"] = sales_df["item"].apply(get_item_name_by_item_id)
+            if len(sales_qs)>0:
+                sales_df = pd.DataFrame(sales_qs.values())
+                sales_df["created_at"] = sales_df["created_at"].apply(lambda x: x.strftime("%Y-%m-%d"))
+                sales_df = sales_df.drop("updated_at", axis=1)
+                sales_df.columns = sales_df.columns.str.replace("item_id", "item")
+                sales_df["item"] = sales_df["item"].apply(get_item_name_by_item_id)
 
-            df = sales_df.groupby("id", as_index=False)['income'].agg("sum")
-            
-            chart = get_chart("bar", sales_df)
+                json_sales_data = sales_df.reset_index().to_json(default_handler=str, orient='records')
+                sales_data = json.loads(json_sales_data)
+                print(sales_data)
 
-            # chart_type = 'bar'  # lub inny rodzaj wykresu, jaki chcesz użyć
-            # results_by = 'income'  # lub inna kolumna, którą chcesz uwzględnić w wykresie
-            # chart = get_chart(chart_type, df, results_by, date_from, date_to)
+                            
+                df = sales_df.groupby("created_at", as_index=False).agg({
+                    'item': 'first',
+                    'income': 'sum',  
+                    "id": "first"
+                }).set_index("id")
+                
+                json_records = df.reset_index().to_json(default_handler=str, orient='records')
+                data = json.loads(json_records)
 
-
-            print(sales_df)
-
-            
-
-            pd.set_option('colheader_justify', 'center')
-            sales_df = sales_df.to_html()
+                chart = get_chart("bar", sales_df, "created_at")
+                pd.set_option('colheader_justify', 'center')
+                sales_df = sales_df.to_html()
+                df = df.to_html()
+            else:
+                message = "No data is available in this date range"
 
     context = {
         "form": form,
         "sales_df": sales_df,
-        "chart": chart
+        "df": df,
+        "chart": chart,
+        "d": data,
+        "sales_data": sales_data,
+        "message": message
     }
 
     return render(request, "sales/sales_report.html", context)

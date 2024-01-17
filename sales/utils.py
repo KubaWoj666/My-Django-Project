@@ -5,6 +5,8 @@ import base64
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from datetime import datetime, timedelta
+
 def get_item_name_by_item_id(item_id):
     item = Item.objects.get(id=item_id)
     return item.name
@@ -19,20 +21,21 @@ def get_graph():
     graph = base64.b64encode(image_png)
     
     graph = graph.decode('utf-8')
-    buffer.close
+    buffer.close()
     return graph
 
 
-def get_chart(chart_type, data, **kwargs):
+def get_chart(chart_type,  data, created_at, **kwargs):
     plt.switch_backend('AGG')
     fig = plt.figure(figsize=(10,4))
     
-    d = data.groupby("id", as_index=False)['income'].agg('sum')
+    d = data.groupby(created_at, as_index=False)['income'].agg('sum')
     
+    sns.barplot(x=created_at, y='income',data=d )
     
-    # plt.bar(d["id"], d['income'])
-    sns.barplot(x="id", y='income',data=d )
     
     plt.tight_layout()
     chart = get_graph()
     return chart
+
+
