@@ -1,13 +1,14 @@
 from typing import Any
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.views.generic import ListView, FormView
+from django.http import  HttpResponse, JsonResponse
 
 from .models import Category, Item
-from .forms import ItemEditForm, CategoryForm, FormatForm
+from .forms import ItemEditForm, CategoryForm
 from sales.forms import SaleForm
 from .admin import ItemResources
-from django_htmx.http import HttpResponseClientRefresh, HttpResponseClientRedirect
+from django_htmx.http import HttpResponseClientRedirect
+
+
 
 
 def is_ajax(request):
@@ -85,7 +86,7 @@ def delete_item_view(request, pk):
     
 
 def balance_view(request):
-    items = Item.objects.all()
+    items = Item.objects.filter(sold=False)
 
     if request.method == "POST":
         ids = request.POST.getlist("checkbox_items")
@@ -131,9 +132,6 @@ def get_categories(request):
     print(categories)
     return JsonResponse(list(categories), safe=False)
     
-        
-    
-
 
 
 

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_htmx',
     'import_export',
+    'formtools',
     
 
 ]

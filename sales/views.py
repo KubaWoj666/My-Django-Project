@@ -6,7 +6,6 @@ from .forms import SaleForm, SaleSearchForm
 from .utils import get_item_name_by_item_id, get_chart, get_graph
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import json
 
 
@@ -35,7 +34,6 @@ def create_sale_view(request):
 def get_all_sales_view(request):
     sales = Sale.objects.all()
     
-
     context = {
         "sales": sales
     }
@@ -58,7 +56,6 @@ def sales_report(request):
             date_to = form.cleaned_data.get("date_to")
           
             sales_qs = Sale.objects.filter(created_at__date__gte=date_from, created_at__date__lte=date_to)
-            print(len(sales_qs))
 
             if len(sales_qs)>0:
                 sales_df = pd.DataFrame(sales_qs.values())
@@ -69,8 +66,6 @@ def sales_report(request):
 
                 json_sales_data = sales_df.reset_index().to_json(default_handler=str, orient='records')
                 sales_data = json.loads(json_sales_data)
-                print(sales_data)
-
                             
                 df = sales_df.groupby("created_at", as_index=False).agg({
                     'item': 'first',
@@ -81,7 +76,7 @@ def sales_report(request):
                 json_records = df.reset_index().to_json(default_handler=str, orient='records')
                 data = json.loads(json_records)
 
-                chart = get_chart("bar", sales_df, "created_at")
+                chart = get_chart(df, "created_at")
                 pd.set_option('colheader_justify', 'center')
                 sales_df = sales_df.to_html()
                 df = df.to_html()

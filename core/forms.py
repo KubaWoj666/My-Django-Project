@@ -18,8 +18,3 @@ class CategoryForm(forms.ModelForm):
 
 
 
-FORMAT_CHOICE = (
-    ("xls", "xls"),
-)
-class FormatForm(forms.Form):
-    format = forms.ChoiceField(choices=FORMAT_CHOICE, widget=forms.Select(attrs={"class": "form-select"}))

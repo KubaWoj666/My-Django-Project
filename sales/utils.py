@@ -25,14 +25,13 @@ def get_graph():
     return graph
 
 
-def get_chart(chart_type,  data, created_at, **kwargs):
+def get_chart(data, created_at, **kwargs):
     plt.switch_backend('AGG')
     fig = plt.figure(figsize=(10,4))
     
-    d = data.groupby(created_at, as_index=False)['income'].agg('sum')
+    # d = data.groupby(created_at, as_index=False)['income'].agg('sum')
     
-    sns.barplot(x=created_at, y='income',data=d )
-    
+    sns.barplot(x=created_at, y='income',data=data )
     
     plt.tight_layout()
     chart = get_graph()
