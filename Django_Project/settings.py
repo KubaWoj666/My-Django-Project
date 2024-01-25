@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #local
     'core',
     'sales',
+    'shop',
 
     #3rd patry
     'crispy_forms', 
