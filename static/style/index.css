@@ -10,21 +10,70 @@ body {
     width: 100%;
 }
 
+/* button */
+
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn26 {
+    background-image: linear-gradient(
+      to right,
+      #25aae1,
+      #4481eb,
+      #04befe,
+      #3f86ed
+    );
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+  }
+
+  /* end button */
+
+
+.section-p1 {
+    padding: 40px 80px;
+  }
+
 #top-header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 5px 0px;
-    background-color: #E3E6F3;
+    background-color: #d1e6f1;
     box-shadow: 0 5px 15px rgb(0,0,0,0.06);
     z-index: 999;
     position: sticky;
     top: 0;
     left: 0;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+
 }
-
-
 
 #top-header #left li{
     font-size: 10px;
@@ -60,18 +109,15 @@ a{
 
 #gold:hover{
     border: 1px solid rgb(71, 131, 180);
-    cursor: pointer;
-    color: red;
 }
 
 #gold a:hover{
-    /* color: rgb(41, 144, 137); */
     font-weight: bold;
 }
 
 #icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -96,10 +142,25 @@ a{
 
 /* HEADER */
 
+#header{
+    background-color: rgb(242, 248, 248);
+}
+
 .logo {
     display: flex;
     margin-bottom: 20px;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo img{
+    margin-top: 20px;
+}
+
+.logo h3{
+    margin-top: 10px;
+    color: rgb(129, 145, 158);
 }
 
 .logo a:hover img {
@@ -108,8 +169,7 @@ a{
 
 
 .nav {
-    padding: 10px 80px;
-    background-color: #E3E6F3;
+    padding: 10px 80px;   
     box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
     z-index: 999;
     position: sticky;
@@ -124,4 +184,390 @@ a{
     justify-content: space-between;
     align-items: center;
     list-style: none;
+}
+
+
+
+#hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+
+/* buy */
+
+
+#buy {
+    margin-top: -80px;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flip-box {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.flip-box-inner {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-box-back {
+    padding: 10px 10px;
+    background-color: rgb(185, 204, 223);
+    color: white;
+    transform: rotateY(180deg);
+} 
+.flip-box-back p{
+    margin-top: 20px;
+}
+
+/* old jewelery */
+
+
+#product1{
+    padding: 10px 50px;
+    margin-top: 20px;
+    text-align: center;
+
+    /* border: 2px solid beige; */
+}
+
+#product1 .pro-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    /* flex-wrap: wrap; */
+}
+
+#product1 .pro{
+    padding: 10px 10px;
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    /* border: 1px solid #cce7d0; */
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+#product1 .pro:hover{
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+
+}
+
+#product1 .pro img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.text {
+    padding: 10px 10px;
+    width: 23%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    margin-bottom: 30px;
+    /* border: 1px solid black; */
+}
+
+.text h3{
+    font-size: 50px;
+    align-self:baseline;
+}
+
+.text p{
+    font-size: medium;
+}
+
+.text button{
+    border: 1px solid rgb(115, 128, 140);
+    padding: 10px 10px;
+    background-color: #d1e6f1;
+    margin-top: 20px;
+}
+
+
+/* banner */
+
+#banner{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#banner div{
+    padding: 10px;
+    height: 30rem;
+    overflow: hidden;
+}
+
+#banner div a img{
+    transition: transform .5s ease;
+}
+
+
+#banner div a img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#engagement{
+    margin-top: -60px;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* border: 1px solid black; */
+}
+
+#engagement .text{
+    text-align: center;
+}
+
+#engagement .img{
+    height: 35rem;
+}
+
+#engagement img{
+    height: 35rem;
+}
+
+
+/* brands */
+
+
+#brands {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(218, 225, 225);
+    padding: 10px 50px;
+}
+
+
+#brands div {
+    width: 10%;
+    text-align: center; 
+}
+
+#brands .rolex{
+    width: 8%;
+}
+
+#brands div img {
+    width: 100%; 
+    max-width: 100%; 
+    height: auto; 
+    mix-blend-mode: color-burn;
+}
+
+
+/* wedding */
+
+#wedding{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+#wedding .images{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#wedding .images div {
+    width: 40rem;
+}
+
+#wedding .images div img{
+    width: 98%;
+    
+}
+
+.lower{
+    margin-top: 100px;
+}
+
+
+/* brands */
+
+
+#brands {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(218, 225, 225);
+    padding: 10px 50px;
+}
+
+
+#brands div {
+    width: 10%;
+    text-align: center; 
+}
+
+#brands .rolex{
+    width: 8%;
+}
+
+#brands div img {
+    width: 100%; 
+    max-width: 100%; 
+    height: auto; 
+    mix-blend-mode: color-burn;
+}
+
+/* baner_01 */
+
+
+#banner_01{
+    margin-top: 20px;
+    background-image: url("../images/baner/intro_0.jpg");
+    height: 60vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0%;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:end;
+}
+#banner_01 h4{
+    margin-top: 30px;
+    color: #ffff;
+    font-size: 30px;
+}
+
+#banner_01 p{
+    margin-top: 10px;
+    width: 300px;
+    text-wrap: wrap;
+    color: #ffff;
+    font-size: 15px;
+    padding: 10 0; 
+    margin-bottom: 10px;
+}
+
+#banner_01 p span{
+    color: #ef3636;
+}
+
+#banner_01 button:hover{
+    background: #088178;
+    color: white;
+}
+
+
+
+
+
+
+/* footer */
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .logo{
+    width: 100px;
+    margin-bottom: 30px;
+}
+
+footer h4{
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p{
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a{
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer  .follow{
+    margin-top: 20px;
+}
+
+footer  .follow i{
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+
+}
+
+footer .install .row img{
+    border: 1px solid #088178;
+    border-radius: 6px;
+}
+
+footer .install img{
+    margin: 10px 0 15px 0;
+}
+
+footer .follow i:hover,
+footer a:hover{
+    color: #088178;
+}
+
+footer .copyright{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+ 
 }
