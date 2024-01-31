@@ -237,14 +237,67 @@ a{
 }
 
 .flip-box-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 10px 10px;
     background-color: rgb(185, 204, 223);
     color: white;
     transform: rotateY(180deg);
 } 
-.flip-box-back p{
-    margin-top: 20px;
+.flip-box-back h2{
+    margin-bottom: 20px;
 }
+
+.flip-box-back table {
+	/* width: 800px; */
+    height: 20vh;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 5px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th {
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
 
 /* old jewelery */
 
@@ -253,15 +306,13 @@ a{
     padding: 10px 50px;
     margin-top: 20px;
     text-align: center;
-
-    /* border: 2px solid beige; */
 }
 
 #product1 .pro-container{
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    /* flex-wrap: wrap; */
+  
 }
 
 #product1 .pro{
@@ -299,7 +350,7 @@ a{
     justify-content: flex-end;
     text-align: center;
     margin-bottom: 30px;
-    /* border: 1px solid black; */
+   
 }
 
 .text h3{
@@ -499,6 +550,109 @@ a{
 
 
 
+#forum-designe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.bg-image{
+    margin-top: 20px;
+    background-image: url("../images/baner/intro_0.jpg") ;
+    height: 60vh;
+    width: 80%;
+    background-size: cover;
+    background-position: top 25% right 0%;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bg-image div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bg-image h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 50px;
+    /* color: #a7cae2; */
+}
+.bg-image h2{
+    font-size: 30px;
+
+}
+
+/* --------- */
+
+
+#fr-jewelry{
+    padding: 10px 50px;
+}
+
+#fr-jewelry .pro-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fr-jewelry .pro{
+    padding: 10px 10px;
+    width: 30%;
+    min-width: 250px;
+    padding: 10px 12px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+#fr-jewelry .pro-container .fr-text {
+    padding: 10px 10px;
+    width: 23%;
+    min-width: 250px;
+    text-align: center;
+    margin-bottom: 30px;
+    align-self:flex-end;
+   
+}
+
+#fr-jewelry .pro-container .fr-text h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+#fr-jewelry .pro img{
+    width: 100%;
+    height: 100%;
+}
+
+
+#contact{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#contact div{
+   
+}
+
+#contact div img{
+    width: 100%;
+    height: 40vh;
+}
+
+
+
+
 
 
 
@@ -570,4 +724,47 @@ footer .copyright{
     justify-content: center;
     align-items: center;
  
+}
+
+
+.carousel { 
+    padding: 10px 10px;
+    position: relative; 
+    width: 100%; 
+    overflow: hidden; 
+    /* background-color: #cdcdcd;  */
+    height: 50vh;
+    background-size: cover;
+    background-position: top 25% right 0%;
+    padding: 10px 80px;
+} 
+
+.carousel-item { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    top: 0; 
+    left: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+  
+.carousel-item .slide-image { 
+    width: 98%; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+} 
+  
+.carousel-item.active { 
+    left: 0; 
+    transition: all 0.3s ease-out; 
+} 
+  
+.carousel-item div { 
+    height: 100%; 
 }

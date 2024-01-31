@@ -5,8 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://kit.fontawesome.com/0645c31385.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'style/index.css' %}">
+    
     <title>Document</title>
 </head>
 <body>
@@ -63,11 +65,35 @@
         </div>
     </section>
 
-    <section id="hero" >
+    <div class="carousel"> 
+        <div class="carousel-item"> 
+            <div class="slide-image"
+                style="background-image:  
+                url('../../static/images/baner/baner-1.jpeg');"> 
+            </div> 
+        </div> 
+        <div class="carousel-item"> 
+            <div class="slide-image"
+                style="background-image:  
+                url('../../static/images/baner/dyplom.jpeg');"> 
+            </div> 
+        </div> 
+        <div class="carousel-item"> 
+            <div class="slide-image"
+                style="background-image:  
+        url('../../static/images/baner/lab.jpeg');  background-size: 100%"> 
+            </div> 
+        </div> 
+        
+    </div> 
+
+  
+
+    <!-- <section id="hero" >
         <div id="image">
             <img src="{% static 'images/baner/baner-1.jpeg' %}" alt="">
         </div>
-    </section>
+    </section> -->
 
     <section id="buy" >
         <div class="flip-box">
@@ -77,8 +103,29 @@
                 </div>
                 <div class="flip-box-back">
                     <h2>Skup Metali Szlahetnych</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. s</p>
-                    <button  class="bn632-hover bn26">Więcej</button>
+                    <table >
+                        <tr>
+                            <th>Próba złota</th>
+                            <th>cena za gram</th>
+                        </tr>
+                        <tr>
+                            <td>333</td>
+                            <td>65</td>
+                        </tr>
+                        <tr>
+                            <td>375</td>
+                            <td>75</td>
+                        </tr>
+                        <tr>
+                            <td>585</td>
+                            <td>143</td>
+                        </tr>
+                        <tr>
+                            <td>750</td>
+                            <td>182</td>
+                        </tr>
+                    </table>
+                    <button  class="bn632-hover bn26">Kalkulator Cen</button>
                 </div>
             </div>
         </div>
@@ -90,7 +137,7 @@
                 </div>
                 <div class="flip-box-back">
                     <h2>Skup i Wycena Diamentów</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. s</p>
+                    <p>Gwarantujemy fachową ocenę, wystawiamy certyfikaty. Nasza firma jest członkiem Klubu Absolwentów Wysokiej Rady Diamentów w Antwerpii (HRD Antwerp - Diamond High Council Antwerp). Firma dysponuje w pełni wyposażonym laboratorium do badania kamieni szlachetnych. </p>
                     <button  class="bn632-hover bn26">Więcej</button>
                 </div>
             </div>
@@ -103,7 +150,7 @@
                 </div>
                 <div class="flip-box-back">
                     <h2>Skup i Wycena Bizuterii</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. s</p>
+                    <p>Skupujemy biżuterię ze złota, srebra i platyny . Oferujemy atrakcyjne ceny i szybki proces sprzedaży. Specjalizujemy się równiez w bizuteri anytykwarycznej.</p>
                     <button  class="bn632-hover bn26">Więcej</button>
                 </div>
             </div>
@@ -133,12 +180,11 @@
             </div>
 
             <div class="text" >
-                <h3>Birzuteria dawna</h3>
+                <h3>Bizuteria dawna</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quis quaerat 
                 </p>
                 <button>Zobacz Więcej</button>
                 </div>
-
             </div>
         </div>
 
@@ -282,6 +328,89 @@
       
     </section>
 
+    <section id="product1">
+        <h2>Bizuteria Premium</h2>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+
+            <div class="pro">
+                <img src="{% static 'images/dawna/p1.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+
+            <div class="pro">
+                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+
+            <div class="pro">
+                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        
+
+        
+            
+    </section>
+
+    <section id="forum-designe">
+        <div class="bg-image">
+            <div>
+                <h1>Disigne By</h1>
+                <h2>Forum</h2>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="fr-jewelry">
+        <div class="pro-container">
+            <div class="fr-text" >
+                <h3>Bizuteria zaprojektowana na zamówienie </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quis quaerat 
+                </p>
+                <button class="bn632-hover bn26 ">Nasze realizacje</button>
+            </div>
+            
+            <div class="pro">
+                <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+
+            <div class="pro">
+                <img src="{% static 'images/dawna/p1.JPG'%}" alt=""> 
+                <div class="des">
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <div >
+            <img src="{% static 'images/baner/ekspert.jpeg' %}" alt="">
+        </div>
+        <div>
+            <img src="{% static 'images/baner/prezent.jpeg' %}" alt="">
+        </div>
+        
+    </section>
+
+  
+
     <footer class="section-p1">
         <div class="col">
             <img class="logo" src="{% static 'images/logo1.png' %}" alt="">
@@ -324,6 +453,6 @@
 
     </footer>
 
-    
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
