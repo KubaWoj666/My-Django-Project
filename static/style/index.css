@@ -176,6 +176,10 @@ a{
     top: 0;
     left: 0;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .nav ul{
@@ -641,9 +645,6 @@ tbody {
     align-items: center;
 }
 
-#contact div{
-   
-}
 
 #contact div img{
     width: 100%;
@@ -768,3 +769,34 @@ footer .copyright{
 .carousel-item div { 
     height: 100%; 
 }
+
+
+.dropdown-btn {
+    background-color: transparent;
+    color: #1f3855;
+    padding: 16px;
+    font-size: 15px;
+    border: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 5px 16px 16px 8px rgba(0,0,0,0.4);
+  z-index: 1;
+}
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+} 
+   .dropdown-menu a:hover {
+    cursor: pointer;
+    background-color: #cccccc;
+ }
+   .dropdown:hover .dropdown-menu {
+      display: block;
+ }

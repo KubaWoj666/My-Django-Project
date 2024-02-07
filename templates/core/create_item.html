@@ -45,12 +45,12 @@
                 {% render_field form.name class="form-control border-primary"  name="name" id="id_name"%}
             </div>
 
+
             <div class="forms-control-cat">
                 <div  id="category" class="forms-control {% if field.errors %} errors {% endif %} ">
                     <label>{{ form.category.label_tag }}</label>
                     {{ form.category.errors }}
                     {% render_field form.category class="form-control border-primary"  name="category" id="id_category"%}
-                    
                 </div>
                 <div class="btn">
                     <!-- <a href="{% url 'add-category' %}?next={{item.id}}" class="btn btn-primary">Add Category</a> -->
@@ -116,7 +116,13 @@
   
           <form id="category_form" method="POST" action="{% url 'add-category' %}" >
             {% csrf_token %}
-            <div  id="name" class="forms-control {% if field.errors %} errors {% endif %} ">
+            <div  id="mcat_name" class="forms-control {% if field.errors %} errors {% endif %} ">
+                <label>{{ category_form.main_cat_name.label_tag }}</label>
+                {{ category_form.main_cat_name.errors }}
+                {% render_field category_form.main_cat_name class="form-control border-primary"  name="main_cat_name_input" id="main_cat_name"%}
+            </div>
+            
+            <div  id="cat_name" class="forms-control {% if field.errors %} errors {% endif %} ">
                 <label>{{ category_form.category_name.label_tag }}</label>
                 {{ category_form.category_name.errors }}
                 {% render_field category_form.category_name class="form-control border-primary"  name="category_name_input" id="category_name"%}

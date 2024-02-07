@@ -117,9 +117,12 @@ def create_category_view(request):
 
     if is_ajax(request=request):
         if form.is_valid():
-            print("opa")
             form.save()
             data["category_name"] = form.cleaned_data.get("category_name")
+            main_cat_name= form.cleaned_data.get("main_cat_name")
+            print("main cat",  main_cat_name)
+            data["main_category_name"] = main_cat_name.main_name
+
             data["status"] = 'ok'
             print(data)
             return JsonResponse(data)
@@ -128,8 +131,9 @@ def create_category_view(request):
 
 
 def get_categories(request):
-    categories = Category.objects.all().values('id', 'category_name')
-    print(categories)
+    categories = Category.objects.all().values("id", "category_name", "main_cat_name__main_name")
+    print()
+    print("cat " , categories)
     return JsonResponse(list(categories), safe=False)
     
 

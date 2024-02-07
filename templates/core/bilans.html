@@ -14,7 +14,7 @@
 
 
 {% block content %}
-    <div class="counter">
+    <div class="counter mt-2">
 
     </div>
     
@@ -29,6 +29,7 @@
                     <tr>
                         <th scope="col">Inside Number</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Weight</th>
                         <th scope="col">Purchase price</th>
                         <th scope="col">checkbox</th>
@@ -39,6 +40,7 @@
                         <tr>
                             <th scope="row">{{ item.inside_number }}</th>
                             <td><a href="">{{ item.name }}</a></td>
+                            <td><img src="{{item.image.url}}" alt="" style="width:50px"></td>
                             <td>{{ item.weight }}g</td>
                             <td>{{ item.purchase_price }}</td>
                             <td>

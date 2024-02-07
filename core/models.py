@@ -2,14 +2,22 @@ from django.db import models
 
 import uuid
 
+
+class MainCategory(models.Model):
+    main_name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self) -> str:
+        return self.main_name
+
 class Category(models.Model):
-    category_name = models.CharField(max_length=100, unique=True)
+    main_cat_name = models.ForeignKey(MainCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    category_name = models.CharField(max_length=100)
 
     class Meta:
         verbose_name_plural = "Categories"
     
     def __str__(self):
-        return self.category_name
+        return f"{self.main_cat_name} -- {self.category_name}"
 
 class Item(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)

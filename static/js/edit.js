@@ -13,14 +13,16 @@ input.addEventListener("change", ()=>{
 
 const category_form = document.getElementById("category_form");
 const category_input = document.getElementById("category_name");
-const csrf = category_form.querySelector("[name='csrfmiddlewaretoken']")
+const main_category_input = document.getElementById("main_cat_name");
 
+const csrf = category_form.querySelector("[name='csrfmiddlewaretoken']")
+console.log(category_form.elements)
 var categoryUrl = "{% url 'get-categories' %}";
 
 console.log(categoryUrl)
 
 const select = document.getElementById("id_category")
-console.log(select)
+console.log(category_input.length)
 
 
 
@@ -37,6 +39,7 @@ category_form.addEventListener("submit", e=>{
     const fd = new FormData()
     fd.append("csrfmiddlewaretoken", csrf.value)
     fd.append("category_name", category_input.value)
+    fd.append("main_cat_name", main_category_input.value)
 
     $.ajax({
         type: "POST",
@@ -82,7 +85,9 @@ function updateDropdownList(categories) {
     categories.forEach(category => {
         const option = document.createElement("option");
         option.value = category.id;
-        option.text = category.category_name;
+        option.text = `${category.main_cat_name__main_name} - ${category.category_name}`
+        // option.text = category.category_name;
+        // option.text = category.main_cat_name
         select.appendChild(option);
     });
 }
