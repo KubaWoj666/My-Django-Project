@@ -132,8 +132,6 @@ def create_category_view(request):
 
 def get_categories(request):
     categories = Category.objects.all().values("id", "category_name", "main_cat_name__main_name")
-    print()
-    print("cat " , categories)
     return JsonResponse(list(categories), safe=False)
     
 

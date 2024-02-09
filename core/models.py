@@ -10,6 +10,7 @@ class MainCategory(models.Model):
         return self.main_name
 
 class Category(models.Model):
+    
     main_cat_name = models.ForeignKey(MainCategory, on_delete=models.SET_NULL, null=True, blank=True)
     category_name = models.CharField(max_length=100)
 
@@ -30,6 +31,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to="items", default="empty_f.jpeg", blank=True, null=True)
     certificate = models.FileField(upload_to="certificate", blank=True, null=True)
     purchase_price = models.DecimalField(max_digits=20, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     sold = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

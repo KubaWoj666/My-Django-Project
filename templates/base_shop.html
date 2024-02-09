@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0645c31385.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+    
+ 
+    
+    {% block title %}
+    <title>Forum</title>
+    {% endblock title %}
+        
+</head>
+<body>
+    <section id="top-header">
+        <div id="left">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-location-dot"> </i>
+                        Plac  Mirowski  12, 00-138 Warszawa
+                    </a>
+                </li>
+                <li>
+                    <a href=""><i class="fa-solid fa-phone"></i>(22) 403-31-14</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="right">
+            <div id="gold">
+                <a href=""><span>Skup złota 585: 140zł </span></a>
+            </div>
+            <div id="icons">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        
+        
+
+</section>
+
+<section id="header">
+    <div class="logo">
+        <a href="#"><img class="img" src="{% static 'images/logo1.png' %}" alt=""></a>
+        <h3>Since 1992</h3>
+    </div>
+    <div class="nav">
+        <div class="dropdown">
+            <button class="dropdown-btn">Bziuteria Współczesna</button>
+            <div class="dropdown-menu">    
+                {% for modern in modern_jewelry %}
+                    <a href="{% url 'categories' modern.id %}">{{modern.category_name}}</a>    
+                {% endfor %} 
+                <a href="#">Wszystkie</a>                  
+            </div>
+          </div>
+        
+          <div class="dropdown">
+            <button class="dropdown-btn">Ślub i Zaręczytny</button>
+            <div class="dropdown-menu">    
+                {% for w_and_e in wedding_and_engagement %}
+                    <a href="{% url 'categories' w_and_e.id %}">{{w_and_e.category_name}}</a>    
+                {% endfor %} 
+                <a href="#">Wszystkie</a>                  
+            </div>
+          </div>
+          <div class="dropdown">
+                <button class="dropdown-btn">Biuteria dawna</button>
+                <div class="dropdown-menu">    
+                    {% for old in old_jewelry %}
+                        <a href="{% url 'categories' old.id %}">{{old.category_name}}</a>    
+                    {% endfor %} 
+                    <a href="#">Wszystkie</a>                  
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn">Nasi rzeczoznawcy</button>
+                <div class="dropdown-menu">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn">Diamenty</button>
+                <div class="dropdown-menu">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn">Usługi i Współpraca</button>
+                <div class="dropdown-menu">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
+            </div>
+          
+    </div>
+</section>
+
+
+{% block content %}
+    
+{% endblock content %}
+    
+
+<footer class="section-p1">
+    <div class="col">
+        <img class="logo" src="{% static 'images/logo1.png' %}" alt="">
+        <h4>Contact</h4>
+        <p><strong><i class="fa-solid fa-location-dot"></i></strong> plac Mirowski 12</p>
+        <p><strong><i class="fa-solid fa-phone"></i></strong> 22 403 13 14</p>
+        <p><strong><i class="fa-solid fa-clock"></i></strong> 9.30 - 17.30 Mon-Fri </p>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="icon">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h4>About</h4>
+        <a href="#">Abbout As</a>
+        <a href="#">Delivery information</a>
+        <a href="#">Private Polycy</a>
+        <a href="#">Contact Us</a>
+    </div>
+
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+    </div>
+
+    
+
+    <div class="copyright">
+        <p>2021,  Tech2 etc  - Html CSS Ecomerce Template</p>
+    </div>
+
+</footer>
+
+<script src="{% static 'js/index.js' %}"></script>
+    
+</body>
+</html>

@@ -90,6 +90,12 @@
                 {% render_field form.purchase_price class="form-control border-primary"  name="purchase_price" id="id_purchase_price"%}
             </div>
 
+            <div  id="sale_price" class="forms-control {% if field.errors %} errors {% endif %} ">
+                <label>{{ form.sale_price.label_tag }}</label>
+                {{ form.sale_price.errors }}
+                {% render_field form.sale_price class="form-control border-primary"  name="sale_price" id="id_sale_price"%}
+            </div>
+
             <div  id="certificate" class="forms-control {% if field.errors %} errors {% endif %} ">
                 <label>{{ form.certificate.label_tag }}</label>
                 {{ form.certificate.errors }}
