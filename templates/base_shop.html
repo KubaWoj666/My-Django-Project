@@ -7,8 +7,12 @@
     <script src="https://kit.fontawesome.com/0645c31385.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'style/index.css' %}">
     
- 
     
+    {% block css %}
+        
+    {% endblock css %}
+        
+
     {% block title %}
     <title>Forum</title>
     {% endblock title %}
@@ -61,26 +65,26 @@
             <button class="dropdown-btn">Bziuteria Współczesna</button>
             <div class="dropdown-menu">    
                 {% for modern in modern_jewelry %}
-                    <a href="{% url 'categories' modern.id %}">{{modern.category_name}}</a>    
+                    <a href="{% url 'categories' modern.slug %}">{{modern.category_name}}</a>    
                 {% endfor %} 
                 <a href="#">Wszystkie</a>                  
             </div>
           </div>
         
           <div class="dropdown">
-            <button class="dropdown-btn">Ślub i Zaręczytny</button>
+            <button class="dropdown-btn">Ślub i Zaręczyny</button>
             <div class="dropdown-menu">    
                 {% for w_and_e in wedding_and_engagement %}
-                    <a href="{% url 'categories' w_and_e.id %}">{{w_and_e.category_name}}</a>    
+                    <a href="{% url 'categories' w_and_e.slug %}">{{w_and_e.category_name}}</a>    
                 {% endfor %} 
                 <a href="#">Wszystkie</a>                  
             </div>
           </div>
           <div class="dropdown">
-                <button class="dropdown-btn">Biuteria dawna</button>
+                <button class="dropdown-btn">Bizuteria Dawna</button>
                 <div class="dropdown-menu">    
                     {% for old in old_jewelry %}
-                        <a href="{% url 'categories' old.id %}">{{old.category_name}}</a>    
+                        <a href="{% url 'categories' old.slug %}">{{old.category_name}}</a>    
                     {% endfor %} 
                     <a href="#">Wszystkie</a>                  
                 </div>

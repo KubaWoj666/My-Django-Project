@@ -2,8 +2,8 @@ from typing import Any
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import  HttpResponse, JsonResponse
 
-from .models import Category, Item
-from .forms import ItemEditForm, CategoryForm
+from .models import Category, Item, Image
+from .forms import ItemEditForm, CategoryForm, ImageForm
 from sales.forms import SaleForm
 from .admin import ItemResources
 from django_htmx.http import HttpResponseClientRedirect
@@ -18,9 +18,16 @@ def is_ajax(request):
 
 def home_view(request):
     items = Item.objects.all()
-
+    item_data = []
+    for item in items:
+        my_item_images = item.image_set.all()
+        images_urls = [image.image.url for image in my_item_images]
+        item_data.append({"item": item, "images": images_urls})
+    
+    print(item_data)
     context={
-        "items": items
+        "items": items,
+        "item_data": item_data
     }
     return render(request,  "core/home.html", context )
 
@@ -40,16 +47,23 @@ def detail_view(request, pk):
 def create_item_view(request):
     form = ItemEditForm()
     category_form = CategoryForm()
+    image_form = ImageForm()
 
     if request.method == "POST":
         form = ItemEditForm(request.POST or None, request.FILES or None)
+        files = request.FILES.getlist("image")
         if form.is_valid():
-            form.save()
+            item = form.save(commit=False)
+            item.save()
+            for f in files:
+                Image.objects.create(item=item, image=f)
+
             return redirect("home")
     
     context = {
         "form": form,
-        "category_form": category_form
+        "category_form": category_form,
+        "image_form": image_form
     }
 
     return render(request, "core/create_item.html", context)

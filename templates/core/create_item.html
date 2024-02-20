@@ -28,9 +28,9 @@
             {% csrf_token %}
 
             <div  id="image" class="forms-control {% if field.errors %} errors {% endif %} ">
-                <label>{{ form.image.label_tag }}</label>
-                {{ form.image.errors }}
-                {% render_field form.image class="form-control border-primary"  name="image" id="id_image"%}
+                <label>{{ image_form.image.label_tag }}</label>
+                {{ image_form.image.errors }}
+                {% render_field image_form.image class="form-control border-primary"   name="image" id="id_image"%}
             </div>
 
             <div  id="inside_number" class="forms-control {% if field.errors %} errors {% endif %} ">

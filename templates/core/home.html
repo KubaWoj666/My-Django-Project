@@ -29,17 +29,21 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">   
-            {% for item in items  %}
+            {% for item_entry in item_data  %}
             
             {% if  not item.sold  %}<tr>
-              <th scope="row">{{item.inside_number}}</th>
-              <td><a href="{% url 'detail' item.id %}">{{item.name}}</a></td>
-              <td><img src="{{item.image.url}}" alt="" style="width:50px"></td>
-              <td>{{item.weight}}g</td>
-              <td>{{item.purchase_price}}</td>
-              <td>{{item.sale_price}}</td>
-              <td>{{item.category.main_cat_name}}</td>
-              <td>{{item.category.category_name}}</td>
+              <th scope="row">{{item_entry.item.inside_number}}</th>
+              <td><a href="{% url 'detail' item_entry.item.id %}">{{item_entry.item.name}}</a></td>
+              <td><img src="{{item_entry.images.0}}" alt="" style="width:50px"></td>
+              <td>{{item_entry.item.weight}}g</td>
+              <td>{{item_entry.item.purchase_price}}</td>
+              <td>{{item_entry.item.sale_price}}</td>
+              <td>{{item_entry.item.category.main_cat_name}}</td>
+              <td>{{item_entry.item.category.category_name}}</td>
+              
+              
+              
+                
 
             </tr>
               

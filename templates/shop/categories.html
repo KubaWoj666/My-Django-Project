@@ -1,32 +1,62 @@
 {% extends 'base_shop.html' %}
 {% load static %}
 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/categories.css' %}">
+
+{% endblock css %}
+    
+
     
     <title>Category</title>
         
 
 {% block content %}
-<section id="product1">
-    <h2>Categoria</h2>
+<section id="cat-product">
+    <h2>Categories</h2> 
     <!-- <p>Summer clection</p> -->
-    <div class="pro-container">
+    <div class="cat-pro-container">
         
-        {% for item in items  %}
-            <div class="pro">
-                <img src="{{item.image.url}}" style="width: 200px;" alt=""> 
+        {% for item in p_items %}
+            <div class="cat-pro">
+                <img src="{{item.image.url}}"  alt=""> 
                 <div class="des">
                     <h6>{{item.name}}</h6>
-                    <p>{{item.sale_price}}</p>
+                    <p>{{item.sale_price}}zł</p>
                 </div>
             </div>
         {% endfor %}
-    </div>
-
-    
-
-    
-        
+    </div>        
 </section>
         
-{% endblock content %}
+<div class="pagination">
+    <span class="step-links">
+        {% if p_items.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ p_items.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ p_items.number }} of {{ p_items.paginator.num_pages }}.
+        </span>
+
+        {% if p_items.has_next %}
+            <a href="?page={{ p_items.next_page_number }}">next</a>
+            <a href="?page={{ p_items.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
     
+{% endblock content %}
+    <!-- {% for item in items %}
+    
+    {% if item.category.main_cat_name.main_name == "Biżuteria Dawna" %}
+        <h2>{{item.category.main_cat_name}}</h2>
+  
+    {% elif item.category.main_cat_name.main_name == "Biżuteria Współczesna" %}
+        <h2>{{item.category.main_cat_name}}</h2>
+    {% endif %}
+            
+    {% endfor %} -->
+        

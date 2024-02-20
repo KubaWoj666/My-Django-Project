@@ -1,0 +1,48 @@
+#cat-product{
+    padding: 10px 50px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+ #cat-product .cat-pro-container{
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  
+} 
+
+#cat-product .cat-pro-container .cat-pro{
+    padding: 8px;
+   
+}
+#cat-product .cat-pro{
+    padding: 10px 10px;
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+   
+} 
+
+#cat-product .cat-pro:hover{
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+    transform: scale(1.1);
+    cursor: pointer; 
+
+ } 
+
+#cat-product .cat-pro img{
+    width: 100%;
+    border-radius: 20px;
+} 
+
+
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
