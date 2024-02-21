@@ -55,11 +55,21 @@
     justify-content: space-around;
 }
 
-#image{
+#images{
+    width: 40rem;
+    height: 40rem;
+    /* border: 1px solid black; */
     margin-top: 10px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
+
+#images img{
+    width: 300px;
+}
+
 
 #item{
     max-width: 500px;

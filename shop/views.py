@@ -49,8 +49,4 @@ def category_view(request, category_slug):
           "wedding_and_engagement": wedding_and_engagement,
           "p_items": p_items
      }
-     
-
-    
-
      return render(request, "shop/categories.html", context)

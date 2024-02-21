@@ -26,27 +26,37 @@ class ItemResources(resources.ModelResource):
 
 class ItemAdmin(admin.ModelAdmin):
     form = ItemAdminForm
-    list_display = ["name", "category", "get_main_category_name"] #"image_tag"
+    list_display = ["name", "category", "image_tag", "get_main_category_name"] #
 
     def get_main_category_name(self, obj):
         return obj.category.main_cat_name if obj.category else None
     
-    # def image_tag(self, obj):
-    #     return format_html('<img src="{}" style="width: 50px"/>'.format(obj.image.url))
+    def image_tag(self, obj):
+        images = obj.image_set.all()
+        return format_html('<img src="{}" style="width: 50px"/>'.format(images[0].image.url))
 
-    # image_tag.short_description = 'Image'
+    image_tag.short_description = 'Image'
 
     get_main_category_name.short_description = "Main Category"
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("__str__", "slug", )
-    # prepopulated_fields = {"slug": ("category_name",)}
+
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ["item", "image_tag"]
+
+    def image_tag(self, obj):
+        
+        return format_html('<img src="{}" style="width: 50px"/>'.format(obj.image.url))
+
+    image_tag.short_description = 'Image'
 
 
 admin.site.register(MainCategory)
 admin.site.register(Category, CategoryAdmin,)
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
 
 

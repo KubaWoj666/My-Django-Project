@@ -36,15 +36,15 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">   
-                    {% for item in items  %}    
+                    {% for item_data in item_data_list  %}    
                         <tr>
-                            <th scope="row">{{ item.inside_number }}</th>
-                            <td><a href="">{{ item.name }}</a></td>
-                            <td><img src="{{item.image.url}}" alt="" style="width:50px"></td>
-                            <td>{{ item.weight }}g</td>
-                            <td>{{ item.purchase_price }}</td>
+                            <th scope="row">{{ item_data.item.inside_number }}</th>
+                            <td><a href="">{{ item_data.item.name }}</a></td>
+                            <td><img src="{{item_data.images.0}}" alt="" style="width:50px"></td>
+                            <td>{{ item_data.item.weight }}g</td>
+                            <td>{{ item_data.item.purchase_price }}</td>
                             <td>
-                                <input id="checkbox" type="checkbox" name="checkbox_items" value="{{ item.id }}">
+                                <input id="checkbox" type="checkbox" name="checkbox_items" value="{{ item_data.item.id }}">
                             </td>
                         </tr>                       
                     {% endfor %}

@@ -17,9 +17,16 @@
 
 <div class="row">
   <div class="column-70" >
+    
+    <div id="images">
+    {% for image in images  %}
     <div id="image">
-        <img id="item" src="{{item.image.url}}" alt="">
+      <img id="item" src="{{image.image.url}}" alt="">
     </div>
+    {% endfor %}
+  </div>
+      
+   
   </div>
   <div class="column-30" >
     <div class="title-section">
@@ -59,6 +66,10 @@
             <p><span>Stone:</span> {{item.stone}}</p>
             <p><span>Setting:</span> {{item.setting}}</p>
             <p><span>Weight:</span> {{item.weight}}g</p>
+            <p><span>Cena zakupu:</span> {{item.purchase_price}}zł</p>
+            <p><span>Cena Sprzedazy:</span> {{item.sale_price}}zł.</p>
+
+
 
             
 
