@@ -79,8 +79,6 @@ def edit_item_view(request, pk):
     image_form = ImageForm()
 
     images = item.image_set.all()
-    print("edit")
-    print("edit", images)
     
     if request.method == "POST":
         form = ItemEditForm(request.POST, instance=item)
@@ -94,7 +92,7 @@ def edit_item_view(request, pk):
                 for f in files:
                     Image.objects.create(item=item, image=f)
                 
-            return redirect("detail", item.id)
+            return redirect("core-detail", item.id)
     else:
         form = ItemEditForm(instance=item)
     

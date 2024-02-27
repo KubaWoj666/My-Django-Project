@@ -18,12 +18,12 @@
     <!-- <p>Summer clection</p> -->
     <div class="cat-pro-container">
         
-        {% for item in p_items %}
+        {% for data in item_data %}
             <div class="cat-pro">
-                <img src="{{item.image.url}}"  alt=""> 
+                <a href="{% url 'shop-detail' data.item.id %}"><img src="{{data.images.0.image.url}}"  alt=""></a>
                 <div class="des">
-                    <h6>{{item.name}}</h6>
-                    <p>{{item.sale_price}}zł</p>
+                    <h6>{{data.item.name}}</h6>
+                    <p>{{data.item.sale_price}}zł</p>
                 </div>
             </div>
         {% endfor %}

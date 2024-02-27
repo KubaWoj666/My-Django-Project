@@ -1,0 +1,50 @@
+{% extends 'base_shop.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/detail_shop.css' %}">
+{% endblock css %}
+    
+
+
+
+{% block content %}
+    <section id="prodetails">
+        <div class="sigiel-pro-image">
+            <img src="{{images.0.image.url}}"  width="100%" id="MainImage">
+            <div class="small-image-group">    
+                {% for image in images  %}
+                    <div class="small-image-col">
+                        <img src="{{image.image.url}}" width="100%" class="small-img" alt="">
+                    </div>
+                {% endfor %}   
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h6>{{item.category}}</h6>
+            <h1>{{item.name}}</h1>
+            <p><span>Dostępność:</span> <strong>PLac Mirowski 12 Warszawa</strong></p>
+            
+            <h4>{{item.sale_price}}zł</h4>
+            <h4>Opis Produktu</h4>
+            <samp class="description">{{item.description}}</samp>
+            
+            <ul class="product-details">
+                <li><strong>Rodaj kamienia:</strong> {{item.stone}}</li>
+                <li><strong>Wykończenie:</strong> {{item.setting}}</li>
+                <li><strong>Masa:</strong> {{item.weight}}g</li>
+                <li><strong>Kategoria:</strong> {{item.category.category_name}}</li>
+            </ul>
+            <button class="bn632-hover bn26">Zarezerwój</button>
+
+
+
+        </div>
+    </section>
+    
+{% endblock content %}
+    
+
+

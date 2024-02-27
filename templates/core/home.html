@@ -33,7 +33,7 @@
             
             {% if  not item.sold  %}<tr>
               <th scope="row">{{item_entry.item.inside_number}}</th>
-              <td><a href="{% url 'detail' item_entry.item.id %}">{{item_entry.item.name}}</a></td>
+              <td><a href="{% url 'core-detail' item_entry.item.id %}">{{item_entry.item.name}}</a></td>
               <td><img src="{{item_entry.images.0}}" alt="" style="width:50px"></td>
               <td>{{item_entry.item.weight}}g</td>
               <td>{{item_entry.item.purchase_price}}</td>
