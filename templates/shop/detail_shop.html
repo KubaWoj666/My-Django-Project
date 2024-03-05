@@ -46,14 +46,15 @@
 
 
     <section id="product1">      
+        <div class="header">
         <h2>Produkty z tej samej kategorii </h2>
+        </div>
         <hr>
-        <!-- <p>Summer clection</p> -->
         <div class="pro-container">
             
             {% for others_item in others_items_in_category_data %}
                 <div class="pro">
-                    <img src={{others_item.other_images.0.image.url}} alt=""> 
+                    <a href="{% url 'shop-detail' others_item.other_item.id %}"><img src={{others_item.other_images.0.image.url}} alt=""> </a>
                     <p>{{others_item.other_item.name}}</p>
                     <div class="des">
                     </div>
@@ -61,16 +62,16 @@
             {% endfor %}
                 
             
-        </div>
-        
+        </div>   
     </section>
 
-    <section id="product1">      
-        <h2>Ostatnio Oglądane </h2>
+    
+    <section id="product1">  
+        <div class="header">
+            <h2>Ostatnio Oglądane </h2>
+        </div>    
         <hr>
-        <!-- <p>Summer clection</p> -->
         <div class="pro-container">
-            
             {% for recently_viewed in recently_viewed_items_data %}
                 <div class="pro">
                     <img src={{recently_viewed.images.0.image.url}} alt=""> 
@@ -79,36 +80,25 @@
                     </div>
                 </div>
             {% endfor %}
-                
-            
         </div>
         
     </section>
 
 
-    <!-- DO POPRAWY  -->
     <script>
         var main_image =document.getElementById("MainImage")
-        var small_image = document.getElementsByClassName("small-img")
+        var small_images = document.getElementsByClassName("small-img")
 
-        small_image[0].onclick = function(){
-            main_image.src = small_image[0].src
+       
+        for (var i = 0; i < small_images.length; i++) {
+            small_images[i].onclick = function() {
+                main_image.src = this.src;
+            }
         }
-        small_image[1].onclick = function(){
-            main_image.src = small_image[1].src
-        }
-        small_image[2].onclick = function(){
-            main_image.src = small_image[2].src
-        }
-        small_image[3].onclick = function(){
-            main_image.src = small_image[3].src
-        }
-        small_image[4].onclick = function(){
-            main_image.src = small_image[4].src
-        }
+
+        
     </script>
     
 {% endblock content %}
     
-
 

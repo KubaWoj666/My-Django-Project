@@ -58,3 +58,12 @@
     align-items: center;
 }
 
+.header{
+    display: flex;
+    align-items: start;
+}
+
+.header h2{
+    font-size: 15px;
+}
+
