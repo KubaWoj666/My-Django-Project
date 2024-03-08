@@ -1,6 +1,7 @@
 {% extends 'base_shop.html' %}
 {% load static %}
 
+
 {% block content %}
 
     <div class="carousel"> 
@@ -24,6 +25,7 @@
         </div> 
         
     </div> 
+ 
 
 
     <section id="buy" >
@@ -34,29 +36,29 @@
                 </div>
                 <div class="flip-box-back">
                     <h2>Skup Metali Szlahetnych</h2>
-                    <table >
-                        <tr>
-                            <th>Próba złota</th>
-                            <th>cena za gram</th>
+                    <table class="tbl">
+                        <tr class="tbl-tr">
+                            <th class="tbl-th">Próba złota</th>
+                            <th class="tbl-th">cena za gram</th>
                         </tr>
-                        <tr>
-                            <td>333</td>
-                            <td>65</td>
+                        <tr class="tbl-tr">
+                            <td class="tbl-td">333</td>
+                            <td class="tbl-td">65</td>
                         </tr>
-                        <tr>
-                            <td>375</td>
-                            <td>75</td>
+                        <tr class="tbl-tr">
+                            <td class="tbl-td">375</td>
+                            <td class="tbl-td">75</td>
                         </tr>
-                        <tr>
-                            <td>585</td>
-                            <td>143</td>
+                        <tr class="tbl-tr">
+                            <td class="tbl-td">585</td>
+                            <td class="tbl-td">143</td>
                         </tr>
-                        <tr>
-                            <td>750</td>
-                            <td>182</td>
+                        <tr class="tbl-tr">
+                            <td class="tbl-td">750</td>
+                            <td class="tbl-td">182</td>
                         </tr>
                     </table>
-                    <button  class="bn632-hover bn26">Kalkulator Cen</button>
+                    <a href="{% url 'calculator' %}"><button  class="bn632-hover bn26">Kalkulator Cen</button></a>
                 </div>
             </div>
         </div>
@@ -89,7 +91,7 @@
     </section>
 
     <section id="product1">
-        <h2>Bizuteria Vintage</h2>
+        <h2>Biżuteria Vintage</h2>
         <!-- <p>Summer clection</p> -->
         <div class="pro-container">
             <div class="pro">
@@ -111,10 +113,10 @@
             </div>
 
             <div class="text" >
-                <h3>Bizuteria dawna</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quis quaerat 
+                <h3>Biżuteria dawna</h3>
+                <p>Posiadamy szeroki wybór biżuterii antykwarycznej i vintage 
                 </p>
-                <button>Zobacz Więcej</button>
+                <button class="bn632-hover bn26">Zobacz Więcej</button>
                 </div>
             </div>
         </div>
@@ -134,8 +136,9 @@
     <section id="engagement">
         <div class="text">
             <h3>Zaręczyny</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem consequuntur itaque mollitia in iure minus repudiandae praesentium optio quas sint nam.</p>
-            <button>Więcej</button>
+            <p>Jak zaręczyny to tyko z Forum Jubiler. Znajdziemy dla ciebie idealny pierścionek w najlepszej cenie  
+            </p>
+            <button class="bn632-hover bn26">Więcej</button>
         </div>
         <div class="img">
             <img src="{% static 'images/zareczyny/baner.jpg' %}" alt="">
@@ -238,8 +241,8 @@
     
 
     <section id="banner_01">
-        <h4>Bizuteria Premium</h4>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero labore iusto dignissimos et perferendis</p>
+        <h4>Biżuteria Premium</h4>
+        <p>W naszym salonie znajdą Państwo biżuterię światowych marek premium takich jak Rolex, Piaget, Choprad</p>
         <button class="bn632-hover">Więcej</button>
     </section>
 
@@ -260,7 +263,7 @@
     </section>
 
     <section id="product1">
-        <h2>Bizuteria Premium</h2>
+        <h2>Biżuteria Premium</h2>
         <div class="pro-container">
             <div class="pro">
                 <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
@@ -308,9 +311,8 @@
     <section id="fr-jewelry">
         <div class="pro-container">
             <div class="fr-text" >
-                <h3>Bizuteria zaprojektowana na zamówienie </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quis quaerat 
-                </p>
+                <h3>Biżuteria zaprojektowana na zamówienie </h3>
+                <p>W naszej pracowni wykonujemy biuterię na indywidualne zamówienie klienta. Nie ma dla nas rzeczy niemożliwych</p>
                 <button class="bn632-hover bn26 ">Nasze realizacje</button>
             </div>
             

@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: "Spartan", sans-serif;
 }
+engagement
 
 body {
     width: 100%;
@@ -254,7 +255,7 @@ a{
     margin-bottom: 20px;
 }
 
-.flip-box-back table {
+.flip-box-back .tbl {
 	/* width: 800px; */
     height: 20vh;
 	border-collapse: collapse;
@@ -262,30 +263,26 @@ a{
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-th,
-td {
+.flip-box-back .tbl th,td {
 	padding: 5px;
 	background-color: rgba(255,255,255,0.2);
 	color: #fff;
 }
 
-th {
+.flip-box-back .tbl th {
 	text-align: left;
 }
 
-thead {
-	th {
+.flip-box-back .tbl thead .tbl-th {
 		background-color: #55608f;
 	}
-}
 
-tbody {
-	tr {
-		&:hover {
+.flip-box-back .tbl  .tbl-tr {
+&:hover {
 			background-color: rgba(255,255,255,0.3);
 		}
 	}
-	td {
+	.tbl-td {
 		position: relative;
 		&:hover {
 			&:before {
@@ -300,7 +297,7 @@ tbody {
 			}
 		}
 	}
-}
+
 
 
 /* old jewelery */
@@ -414,19 +411,28 @@ tbody {
     text-align: center;
 }
 
+#engagement .text p{
+    font-size: 15px;
+}
+
 #engagement .img{
     height: 35rem;
 }
 
 #engagement img{
     height: 35rem;
+    transition: transform 0.3s ease-in-out; 
+}
+#engagement img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 
 /* brands */
 
 
-#brands {
+/* #brands {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -449,7 +455,7 @@ tbody {
     max-width: 100%; 
     height: auto; 
     mix-blend-mode: color-burn;
-}
+} */
 
 
 /* wedding */
@@ -476,7 +482,13 @@ tbody {
 
 #wedding .images div img{
     width: 98%;
+    transition: transform 0.3s ease-in-out; 
+
     
+}
+#wedding .images div img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .lower{
@@ -638,6 +650,12 @@ tbody {
 #fr-jewelry .pro img{
     width: 100%;
     height: 100%;
+    transition: transform 0.3s ease-in-out; 
+}
+
+#fr-jewelry .pro img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 
@@ -651,6 +669,14 @@ tbody {
 #contact div img{
     width: 100%;
     height: 40vh;
+    transition: transform 0.3s ease-in-out; 
+
+}
+
+#contact div img:hover{
+    transition: transform 0.3s ease-in-out; 
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 

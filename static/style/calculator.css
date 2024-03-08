@@ -1,0 +1,31 @@
+#title{
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#title h2{
+    font-size: 30px;
+    color: rgb(70, 108, 140);;
+}
+
+#title p{
+    margin-top: 20px;
+}
+
+
+
+#price_table{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+#price_table .tbl-price h3{
+    font-size: 20px;
+
+}

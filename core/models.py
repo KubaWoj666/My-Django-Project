@@ -58,3 +58,12 @@ class Image(models.Model):
 
     def __str__(self):
         return self.item.name
+
+
+class MetalPrice(models.Model):
+    material = models.CharField(max_length=100)
+    grade = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.material} - {self.grade} - {self.price} zł/g"

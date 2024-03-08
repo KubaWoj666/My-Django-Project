@@ -23,7 +23,7 @@
         <div id="left">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="https://www.google.com/search?sca_esv=a83cf3ab82d90a13&rlz=1C5CHFA_enPL1011PL1011&sxsrf=ACQVn0_9lSOka7MiO-yZSVkzJYu2RUBRYQ:1709805720868&q=Forum+Jubiler+Antykwariat+-+Skup+Bi%C5%BCuterii,+Z%C5%82ota+Warszawa&ludocid=15184644510641112416&lsig=AB86z5U5Gy0v1wQEixfjoU6_SP9E&sa=X&ved=2ahUKEwiR74HV8uGEAxWgA9sEHYWLB_EQoAJ6BAgVEAo&biw=1440&bih=813&dpr=2">
                         <i class="fa-solid fa-location-dot"> </i>
                         Plac  Mirowski  12, 00-138 Warszawa
                     </a>
@@ -57,12 +57,12 @@
 
 <section id="header">
     <div class="logo">
-        <a href="#"><img class="img" src="{% static 'images/logo1.png' %}" alt=""></a>
+        <a href="{% url 'index' %}"><img class="img" src="{% static 'images/logo1.png' %}" alt=""></a>
         <h3>Since 1992</h3>
     </div>
     <div class="nav">
         <div class="dropdown">
-            <button class="dropdown-btn">Bziuteria Współczesna</button>
+            <button class="dropdown-btn">Bżiuteria Współczesna</button>
             <div class="dropdown-menu">    
                 {% for modern in modern_jewelry %}
                     <a href="{% url 'categories' modern.slug %}">{{modern.category_name}}</a>    
@@ -81,7 +81,7 @@
             </div>
           </div>
           <div class="dropdown">
-                <button class="dropdown-btn">Bizuteria Dawna</button>
+                <button class="dropdown-btn">Biżuteria Dawna</button>
                 <div class="dropdown-menu">    
                     {% for old in old_jewelry %}
                         <a href="{% url 'categories' old.slug %}">{{old.category_name}}</a>    
@@ -122,7 +122,7 @@
     
 {% endblock content %}
 <section id="contact">
-    <div >
+    <div>
         <img src="{% static 'images/baner/ekspert.jpeg' %}" alt="">
     </div>
     <div>

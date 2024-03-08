@@ -4,7 +4,7 @@ from import_export.fields import Field
 from import_export import widgets
 from django.utils.html import format_html
 
-from .models import MainCategory, Category, Item, Image
+from .models import MainCategory, Category, Item, Image, MetalPrice
 from .forms import ItemAdminForm
 
 
@@ -54,9 +54,14 @@ class ImageAdmin(admin.ModelAdmin):
     image_tag.short_description = 'Image'
 
 
+class MetalPriceAdmin(admin.ModelAdmin):
+    list_display = ["material", "grade", "price"]
+
+
 admin.site.register(MainCategory)
 admin.site.register(Category, CategoryAdmin,)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(MetalPrice, MetalPriceAdmin)
 
 

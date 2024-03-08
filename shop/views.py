@@ -1,15 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 
-from core.models import Item, Image, Category, MainCategory
+from core.models import Item, Category, MetalPrice
+from core.forms import MetalPriceForm
 
-from django.contrib.sessions.models import Session
-from django.contrib.sessions.backends.db import SessionStore
 
-from .utils import get_paginate
-
-import json
-from django.core.serializers.json import DjangoJSONEncoder
 
 
 def index_view(request):
@@ -100,7 +95,7 @@ def detail_shop_view(request, item_id):
                recently_viewed_items_data.append({"recently_item": recently_item, "images":recently_viewed_images})        
 
           request.session["recently_viewed"].insert(0, item.inside_number)
-          
+
           if len(request.session["recently_viewed"]) > 5:
                request.session["recently_viewed"].pop()
      else:
@@ -122,3 +117,38 @@ def detail_shop_view(request, item_id):
      }
 
      return render(request, "shop/detail_shop.html", context)
+
+
+
+def calculator_view(request):
+     categories = Category.objects.all()
+     modern_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Współczesna") 
+     old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
+     wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
+
+
+     metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
+     
+     form = MetalPriceForm()
+
+     if request.method == "POST":
+          form = MetalPriceForm(request.POST or None)
+          if form.is_valid():
+               weight = form.cleaned_data.get("weight")
+               price = form.cleaned_data.get("grade")
+               print(weight)
+               print(price)
+
+     
+
+
+     context = {
+          "categories": categories,
+          "modern_jewelry": modern_jewelry,
+          "old_jewelry": old_jewelry,
+          "wedding_and_engagement": wedding_and_engagement,
+          "metal_prices": metal_prices,
+          "form": form
+
+     }
+     return render(request, "shop/calculator.html", context)
