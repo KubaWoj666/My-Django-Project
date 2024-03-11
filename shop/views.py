@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 
 from core.models import Item, Category, MetalPrice
 from core.forms import MetalPriceForm
+
+from core.views import is_ajax
 
 
 
@@ -126,19 +129,26 @@ def calculator_view(request):
      old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
      wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
 
+     # data = {}
+     # metal_valuation = None
 
      metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
      
      form = MetalPriceForm()
 
-     if request.method == "POST":
-          form = MetalPriceForm(request.POST or None)
-          if form.is_valid():
-               weight = form.cleaned_data.get("weight")
-               price = form.cleaned_data.get("grade")
-               print(weight)
-               print(price)
+     # if is_ajax(request=request):
+     #      form = MetalPriceForm(request.POST or None)
+     #      if form.is_valid():
+     #           data["weight"] = form.cleaned_data.get("weight")
 
+     #           data["price"] = form.cleaned_data.get("grade")
+     #           # print(weight)
+     #           # print(price)
+     #           # metal_valuation = f"{weight * price:.2f}"
+     #           # data["metal_valuation"] = metal_valuation
+     #           data["status"] = "ok"
+     #           print(data)
+     #      return JsonResponse(data)
      
 
 
@@ -148,7 +158,29 @@ def calculator_view(request):
           "old_jewelry": old_jewelry,
           "wedding_and_engagement": wedding_and_engagement,
           "metal_prices": metal_prices,
-          "form": form
-
+          "form": form,
+          # "metal_valuation" : metal_valuation
      }
      return render(request, "shop/calculator.html", context)
+
+
+def calculate_price(request):
+     form = MetalPriceForm(request.POST or None)
+     data = {}
+
+     if is_ajax(request=request):
+          if form.is_valid():
+               weight = form.cleaned_data.get("weight")
+               data["weight"] = weight
+
+               price = form.cleaned_data.get("grade")
+               data["price"] = price
+               # print(weight)
+               # print(price)
+               metal_pricing = f"{weight * price:.2f}"
+               data["metal_pricing"] = metal_pricing
+               data["status"] = "ok"
+               print(data)
+               
+               return JsonResponse(data)
+     return JsonResponse({})

@@ -157,11 +157,11 @@ def create_category_view(request):
             form.save()
             data["category_name"] = form.cleaned_data.get("category_name")
             main_cat_name= form.cleaned_data.get("main_cat_name")
-            print("main cat",  main_cat_name)
+
             data["main_category_name"] = main_cat_name.main_name
 
             data["status"] = 'ok'
-            print(data)
+           
             return JsonResponse(data)
     
     return JsonResponse({})

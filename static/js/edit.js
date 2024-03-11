@@ -86,8 +86,6 @@ function updateDropdownList(categories) {
         const option = document.createElement("option");
         option.value = category.id;
         option.text = `${category.main_cat_name__main_name} - ${category.category_name}`
-        // option.text = category.category_name;
-        // option.text = category.main_cat_name
         select.appendChild(option);
     });
 }

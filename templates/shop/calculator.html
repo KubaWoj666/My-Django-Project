@@ -13,7 +13,7 @@
 
 
 {% block content%}
-    <section id="title">
+    <section id="title" class="mt-2">
         <h2>Wycena i skup metali szlachetnych</h2>
         <hr>
         <p>Metale szlachetne wyceniamy opierając się o aktualne notowania giełdowe.</p>
@@ -42,34 +42,40 @@
         </div>
 
         <div class="wycena" >
-            <h3>wycena</h3>
-            <form action="" method="post">
+            <h3 class="mt-2">Wycena</h3>
+            
+            <form id="calculator-form"  method="POST" action="{% url 'calculate_price' %}" >
                 {% csrf_token %}
-                <div  id="weight" class="forms-control {% if field.errors %} errors {% endif %} ">
-                    <label>Masa</label>
+
+                <div   class="forms-control mb-2 {% if field.errors %} errors {% endif %} ">
+                    <label>Masa (gramy)</label>
                     {{ form.weight.errors }}
-                    {% render_field form.weight class="form-control border-primary"   name="weight" id="id_weight"%}
-                    <p>gram</p>
+                    {% render_field form.weight class="form-control border-primary"  name="weight" id="id_weight"%} 
+               
                 </div>
 
-                
-
-                <select name="grade" class="form-select" aria-label="Default select example">
-                    <option selected>Próba</option>      
+                <select id="grade" name="grade" class="form-select" aria-label="Default select example">
+                    <option  selected>Próba</option>      
                     {%for metal in metal_prices  %}
                     <option  value="{{metal.price}}">{{metal.material}} {{metal.grade}}</option>
                     {% endfor %}
                   </select>
                 
-                <button type="submit">Calculate</button>
+                <button id="calculate-btn" class="bn632-hover bn26" type="submit">Wyceń</button>
             </form>
+            
+            
+            <p id="pricing"> wycna: 0.00zł </p>
+            
+                
+
         </div>
     </section>
 
     
+    <script src="{% static 'js/calculator.js' %}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-
+   
     
 {% endblock content%}
     
