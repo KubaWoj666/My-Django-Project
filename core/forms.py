@@ -30,11 +30,16 @@ class ItemAdminForm(forms.ModelForm):
 
     main_category = forms.ModelChoiceField(queryset=MainCategory.objects.all(), required=False, label='Main Category')
 
-class MetalPriceForm(forms.ModelForm):
+class CalculateMetalPriceForm(forms.ModelForm):
     weight = forms.DecimalField(max_digits=6, decimal_places=2)
 
     class Meta:
         model = MetalPrice
         fields = ['weight', 'grade']
-    
+
+
+class EditMetalPrices(forms.ModelForm):
+    class Meta:
+        model = MetalPrice
+        fields = "__all__"
 

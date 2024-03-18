@@ -31,7 +31,8 @@
         <tbody class="table-group-divider">   
             {% for item_entry in item_data  %}
             
-            {% if  not item.sold  %}<tr>
+            {% if  not item_entry.item.sold  %}
+            <tr>
               <th scope="row">{{item_entry.item.inside_number}}</th>
               <td><a href="{% url 'core-detail' item_entry.item.id %}">{{item_entry.item.name}}</a></td>
               <td><img src="{{item_entry.images.0}}" alt="" style="width:50px"></td>

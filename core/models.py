@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from PIL import Image as pilImage
 
 import uuid
 
@@ -58,6 +59,16 @@ class Image(models.Model):
 
     def __str__(self):
         return self.item.name
+    
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)  # saving image first
+
+    #     img = pilImage.open(self.image.path) # Open image using self
+
+    #     if img.height != 900 or img.width != 900:
+    #         new_img = (900, 900)
+    #         img.thumbnail(new_img)
+    #         img.save(self.image.path)
 
 
 class MetalPrice(models.Model):

@@ -2,8 +2,8 @@ from typing import Any
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import  HttpResponse, JsonResponse
 
-from .models import Category, Item, Image
-from .forms import ItemEditForm, CategoryForm, ImageForm
+from .models import Category, Item, Image, MetalPrice
+from .forms import ItemEditForm, CategoryForm, ImageForm, EditMetalPrices
 from sales.forms import SaleForm
 from .admin import ItemResources
 from django_htmx.http import HttpResponseClientRedirect
@@ -24,7 +24,6 @@ def home_view(request):
         images_urls = [image.image.url for image in my_item_images]
         item_data.append({"item": item, "images": images_urls})
     
-    print(item_data)
     context={
         "items": items,
         "item_data": item_data
@@ -173,5 +172,23 @@ def get_categories(request):
     
 
 
+def edit_metal_prices(request):
+    metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
 
+    if request.method =="POST":
+        grade = request.POST.get("grade")
+        new_price = request.POST.get("new_price")
+        if grade and new_price:
+            try:
+                metal = metal_prices.get(grade=grade)
+                metal.price = new_price
+                metal.save()
+            except MetalPrice.DoesNotExist:
+                pass
+
+    context = {
+        "metal_prices": metal_prices,
+    }
+
+    return render(request, "core/edit_metal_prices.html", context)
 

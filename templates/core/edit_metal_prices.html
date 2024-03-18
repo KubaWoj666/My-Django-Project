@@ -1,0 +1,55 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block css %}
+    
+
+{% endblock css %}
+    
+
+
+{% block content%}
+    
+    
+    <section id="price_table">
+        <div class="tbl-price" >
+            
+            <table class="table mt-5" style="width: 40rem;">
+                <thead>
+                  <tr class="table-primary">
+                    <th scope="col">Próba</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for metal in metal_prices  %}
+                    <tr class="table-light">
+                        <td>{{metal.material}} {{metal.grade}}</td>
+                        
+                        <td>{{metal.price}}zł/g</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="grade" id="grade" value="{{metal.grade}}">
+                                <input type="text" name="new_price"  id="new_price" placeholder="new price" required >
+                                <button type="submit" class="btn btn-success">Edit</button>
+                            </form>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </section>
+
+
+
+
+   
+    
+{% endblock content%}
+    

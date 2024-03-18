@@ -33,7 +33,7 @@
             <tr>
                 <th scope="row">{{sale}}</th>
                 <th scope="row">{{sale.item.inside_number}}</th>
-                <td><a href="{% url 'detail' sale.item.id %}">{{sale.item.name}}</a></td>
+                <td><a href="{% url 'core-detail' sale.item.id %}">{{sale.item.name}}</a></td>
                 <td>{{sale.price}}zł</td>
                 <td>{{sale.income}}zł</td>
                 <td>{{sale.created_at|date:'Y-m-d'}}</td>

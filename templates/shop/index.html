@@ -94,24 +94,17 @@
         <h2>Biżuteria Vintage</h2>
         <!-- <p>Summer clection</p> -->
         <div class="pro-container">
-            <div class="pro">
-                <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
+            
+            {% for data in old_items_data   %}
 
-            <div class="pro">
-                <img src="{% static 'images/dawna/p1.JPG'%}" alt=""> 
-                <div class="des">
+                <div class="pro">
+                    <a href="{% url 'shop-detail' data.item.id %}"><img src="{{data.images.0.image.url}}" alt=""></a>
+                    <div class="des">
+                    </div>
                 </div>
-            </div>
-
-            <div class="pro">
-                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
-
+              
+            {% endfor %}
+                
             <div class="text" >
                 <h3>Biżuteria dawna</h3>
                 <p>Posiadamy szeroki wybór biżuterii antykwarycznej i vintage 
@@ -121,10 +114,6 @@
             </div>
         </div>
 
-        
-
-        
-            
     </section>
 
     <section id="banner">
@@ -149,31 +138,17 @@
         <h2>Pierścionki Zaręczynowe</h2>
         <!-- <p>Summer clection</p> -->
         <div class="pro-container">
-            <div class="pro">
-                <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
 
-            <div class="pro">
-                <img src="{% static 'images/dawna/p1.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
+            {% for data in modern_jewelry_data %}
 
-            <div class="pro">
-                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
-                <div class="des">
+                <div class="pro">
+                    <a href="{% url 'shop-detail' data.item.id %}"><img src="{{data.images.0.image.url}}" alt=""></a>
+                    <div class="des">
+                    </div>
                 </div>
-            </div>
-
-            <div class="pro">
-                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
-
-            </div>
+              
+            {% endfor %}
+            
         </div>
 
         
@@ -205,31 +180,15 @@
         <h2>Obrączki ślubne</h2>
         <!-- <p>Summer clection</p> -->
         <div class="pro-container">
-            <div class="pro">
-                <img src="{% static 'images/dawna/b1.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
+            {% for data in wedding_rings_data %}
 
-            <div class="pro">
-                <img src="{% static 'images/dawna/p1.JPG'%}" alt=""> 
-                <div class="des">
+                <div class="pro">
+                    <a href="{% url 'shop-detail' data.item.id %}"><img src="{{data.images.0.image.url}}" alt=""> </a>
+                    <div class="des">
+                    </div>
                 </div>
-            </div>
-
-            <div class="pro">
-                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
-
-            <div class="pro">
-                <img src="{% static 'images/dawna/b2.JPG'%}" alt=""> 
-                <div class="des">
-                </div>
-            </div>
-
-            </div>
+              
+            {% endfor %}
         </div>
 
         

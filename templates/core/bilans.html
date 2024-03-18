@@ -39,7 +39,7 @@
                     {% for item_data in item_data_list  %}    
                         <tr>
                             <th scope="row">{{ item_data.item.inside_number }}</th>
-                            <td><a href="">{{ item_data.item.name }}</a></td>
+                            <td>{{ item_data.item.name }}</td>
                             <td><img src="{{item_data.images.0}}" alt="" style="width:50px"></td>
                             <td>{{ item_data.item.weight }}g</td>
                             <td>{{ item_data.item.purchase_price }}</td>

@@ -3,7 +3,9 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 
 from core.models import Item, Category, MetalPrice
-from core.forms import MetalPriceForm
+from core.forms import CalculateMetalPriceForm
+
+from .utils import get_images
 
 from core.views import is_ajax
 
@@ -11,36 +13,35 @@ from core.views import is_ajax
 
 
 def index_view(request):
-     categories = Category.objects.all()
+     items = Item.objects.all()
 
-     modern_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Współczesna") 
-     
-     old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
-     
-     wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
+     old_items = items.filter(category__main_cat_name__main_name="Biżuteria Dawna")[:3]
+     old_items_data = []
 
-     # request.session.flush()
+     modern_jewelry = items.filter(category__main_cat_name__main_name="Biżuteria Współczesna")[:4]
+     modern_jewelry_data = []
+
+     wedding_rings = items.filter(category__category_name="Obrączki")[:4]
+     wedding_rings_data=[]
+     
+
      context = {
-         "categories": categories,
-          "modern_jewelry": modern_jewelry,
-          "old_jewelry": old_jewelry,
-          "wedding_and_engagement": wedding_and_engagement,
+          "old_items_data": get_images(old_items, old_items_data),
+          "modern_jewelry_data" : get_images(modern_jewelry, modern_jewelry_data),
+          "wedding_rings_data": get_images(wedding_rings, wedding_rings_data)
      }
+    
      return render(request, "shop/index.html", context)
 
 
 
 
 def category_view(request, category_slug):
-     categories = Category.objects.all()
-     modern_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Współczesna") 
-     old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
-     wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
-
+ 
      item_data = []
      
      # get items by slug, order_by("?") = order randomly 
-     items = Item.objects.filter(category__slug=category_slug).order_by("?")
+     items = Item.objects.filter(category__slug=category_slug, sold=False ).order_by("?")
      
      p = Paginator(items, 24)
      page = request.GET.get("page")
@@ -53,10 +54,6 @@ def category_view(request, category_slug):
 
 
      context = {
-          "categories": categories,
-          "modern_jewelry": modern_jewelry,
-          "old_jewelry": old_jewelry,
-          "wedding_and_engagement": wedding_and_engagement,
           "p_items": p_items,
           "item_data": item_data
      }
@@ -65,11 +62,6 @@ def category_view(request, category_slug):
 
 
 def detail_shop_view(request, item_id):
-     categories = Category.objects.all()
-     modern_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Współczesna") 
-     old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
-     wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
-
      recently_viewed_items_data = []
      others_items_in_category_data = []
 
@@ -109,10 +101,6 @@ def detail_shop_view(request, item_id):
      
 
      context = {
-          "categories": categories,
-          "modern_jewelry": modern_jewelry,
-          "old_jewelry": old_jewelry,
-          "wedding_and_engagement": wedding_and_engagement,
           "item": item,
           "images": images,
           "others_items_in_category_data": others_items_in_category_data,
@@ -124,39 +112,14 @@ def detail_shop_view(request, item_id):
 
 
 def calculator_view(request):
-     categories = Category.objects.all()
-     modern_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Współczesna") 
-     old_jewelry = categories.filter(main_cat_name__main_name="Biżuteria Dawna")
-     wedding_and_engagement = categories.filter(main_cat_name__main_name="Ślub i Zaręczyny")
-
-     # data = {}
-     # metal_valuation = None
-
      metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
      
-     form = MetalPriceForm()
+     form = CalculateMetalPriceForm()
 
-     # if is_ajax(request=request):
-     #      form = MetalPriceForm(request.POST or None)
-     #      if form.is_valid():
-     #           data["weight"] = form.cleaned_data.get("weight")
-
-     #           data["price"] = form.cleaned_data.get("grade")
-     #           # print(weight)
-     #           # print(price)
-     #           # metal_valuation = f"{weight * price:.2f}"
-     #           # data["metal_valuation"] = metal_valuation
-     #           data["status"] = "ok"
-     #           print(data)
-     #      return JsonResponse(data)
-     
+   
 
 
      context = {
-          "categories": categories,
-          "modern_jewelry": modern_jewelry,
-          "old_jewelry": old_jewelry,
-          "wedding_and_engagement": wedding_and_engagement,
           "metal_prices": metal_prices,
           "form": form,
           # "metal_valuation" : metal_valuation
@@ -165,7 +128,7 @@ def calculator_view(request):
 
 
 def calculate_price(request):
-     form = MetalPriceForm(request.POST or None)
+     form = CalculateMetalPriceForm(request.POST or None)
      data = {}
 
      if is_ajax(request=request):
@@ -175,8 +138,6 @@ def calculate_price(request):
 
                price = form.cleaned_data.get("grade")
                data["price"] = price
-               # print(weight)
-               # print(price)
                metal_pricing = f"{weight * price:.2f}"
                data["metal_pricing"] = metal_pricing
                data["status"] = "ok"
