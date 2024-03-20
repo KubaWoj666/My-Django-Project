@@ -67,9 +67,11 @@
                 {% for modern in modern_jewelry %}
                     <a href="{% url 'categories' modern.slug %}">{{modern.category_name}}</a>    
                 {% endfor %} 
-                <a href="#">Wszystkie</a>                  
+                <!-- {{modern_jewelry.0.main_cat_name}} -->
+                <a href="{% url 'main_categories' modern_jewelry.0.main_cat_name %}">Wszystkie</a>                  
             </div>
           </div>
+          
         
           <div class="dropdown">
             <button class="dropdown-btn">Ślub i Zaręczyny</button>
@@ -77,7 +79,7 @@
                 {% for w_and_e in wedding_and_engagement %}
                     <a href="{% url 'categories' w_and_e.slug %}">{{w_and_e.category_name}}</a>    
                 {% endfor %} 
-                <a href="#">Wszystkie</a>                  
+                <a href="{% url 'main_categories' wedding_and_engagement.0.main_cat_name %}">Wszystkie</a>                  
             </div>
           </div>
           <div class="dropdown">
@@ -86,11 +88,19 @@
                     {% for old in old_jewelry %}
                         <a href="{% url 'categories' old.slug %}">{{old.category_name}}</a>    
                     {% endfor %} 
-                    <a href="#">Wszystkie</a>                  
+                    <a href="{% url 'main_categories' old_jewelry.0.main_cat_name %}">Wszystkie</a>                  
                 </div>
             </div>
             <div class="dropdown">
                 <button class="dropdown-btn">Forum Design</button>
+                <div class="dropdown-menu">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn">Biżuteria Premium</button>
                 <div class="dropdown-menu">
                 <a href="#">Link 1</a>
                 <a href="#">Link 2</a>

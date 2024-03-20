@@ -17,11 +17,11 @@
     <h2>Categories</h2> 
     <!-- <p>Summer clection</p> -->
     <div class="cat-pro-container">
-
+        
         {% if not items_data %}
             <h1>Brak przedmiotów w tej kategorii</h1>
         {% endif %}
-        
+            
         {% for data in items_data %}
             <div class="cat-pro">
                 <a href="{% url 'shop-detail' data.item.id %}"><img src="{{data.images.0.image.url}}"  alt=""></a>

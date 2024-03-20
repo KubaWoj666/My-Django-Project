@@ -11,7 +11,7 @@ from core.views import is_ajax
 
 
 
-
+#shop home page
 def index_view(request):
      items = Item.objects.all()
 
@@ -34,33 +34,44 @@ def index_view(request):
      return render(request, "shop/index.html", context)
 
 
+# All products form main category(Mian category)
+def main_cat_view(request, main_cat_name):
+     items_data = []
+     items = Item.objects.filter(category__main_cat_name__main_name=main_cat_name, sold=False)
+     print("opa", items)
+
+     p = Paginator(items, 12)
+     page = request.GET.get("page")
+     p_items = p.get_page(page)
+
+     context = {
+          "p_items": p_items,
+          "items_data": get_images(items, items_data)
+     }
+
+     return render(request, "shop/main-categories.html", context)
 
 
+# All products from subcategory(Category)
 def category_view(request, category_slug):
  
-     item_data = []
+     items_data = []
      
      # get items by slug, order_by("?") = order randomly 
      items = Item.objects.filter(category__slug=category_slug, sold=False ).order_by("?")
      
-     p = Paginator(items, 24)
+     p = Paginator(items, 12)
      page = request.GET.get("page")
      p_items = p.get_page(page)
      
-
-     for item in items:
-          images = item.image_set.all()
-          item_data.append({"item": item, "images": images})
-
-
      context = {
           "p_items": p_items,
-          "item_data": item_data
+          "items_data": get_images(items, items_data)
      }
      return render(request, "shop/categories.html", context)
 
 
-
+# Detail product view
 def detail_shop_view(request, item_id):
      recently_viewed_items_data = []
      others_items_in_category_data = []
@@ -115,9 +126,6 @@ def calculator_view(request):
      metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
      
      form = CalculateMetalPriceForm()
-
-   
-
 
      context = {
           "metal_prices": metal_prices,
