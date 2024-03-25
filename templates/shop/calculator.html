@@ -44,7 +44,7 @@
         <div class="wycena" >
             <h3 class="mt-2">Wycena</h3>
             
-            <form id="calculator-form"  method="POST" action="{% url 'calculate_price' %}" >
+            <form id="calculator-form"  method="POST" action="{% url 'calculator' %}" >
                 {% csrf_token %}
 
                 <div   class="forms-control mb-2 {% if field.errors %} errors {% endif %} ">

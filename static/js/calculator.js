@@ -7,7 +7,7 @@ const pricing = document.getElementById("pricing")
 
 console.log(weight.value)
 
-const url = "http://127.0.0.1:8000/shop/calculate-price"
+const url = "http://127.0.0.1:8000/shop/calculator"
 
 calculator_fom.addEventListener("submit", e=>{
     e.preventDefault()

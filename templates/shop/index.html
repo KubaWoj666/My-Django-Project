@@ -35,28 +35,20 @@
                     <img src="{% static 'images/baner/sk-zl.jpeg' %}" alt="">
                 </div>
                 <div class="flip-box-back">
-                    <h2>Skup Metali Szlahetnych</h2>
+                    <h2>Skup Metali Szlachetnych</h2>
                     <table class="tbl">
                         <tr class="tbl-tr">
                             <th class="tbl-th">Próba złota</th>
                             <th class="tbl-th">cena za gram</th>
                         </tr>
-                        <tr class="tbl-tr">
-                            <td class="tbl-td">333</td>
-                            <td class="tbl-td">65</td>
-                        </tr>
-                        <tr class="tbl-tr">
-                            <td class="tbl-td">375</td>
-                            <td class="tbl-td">75</td>
-                        </tr>
-                        <tr class="tbl-tr">
-                            <td class="tbl-td">585</td>
-                            <td class="tbl-td">143</td>
-                        </tr>
-                        <tr class="tbl-tr">
-                            <td class="tbl-td">750</td>
-                            <td class="tbl-td">182</td>
-                        </tr>
+                        {% for metal in metal_prices  %}
+                            {% if metal.grade == 585 or metal.grade == 750 or metal.grade == 333 or metal.grade == 375 %}                            
+                                <tr class="tbl-tr">
+                                    <td class="tbl-td">{{metal.material}} {{metal.grade}}</td>
+                                    <td class="tbl-td">{{metal.price}}zł/g</td>
+                                </tr>
+                            {% endif %}
+                        {%endfor%}                   
                     </table>
                     <a href="{% url 'calculator' %}"><button  class="bn632-hover bn26">Kalkulator Cen</button></a>
                 </div>
@@ -268,12 +260,15 @@
     <section id="forum-designe">
         <div class="bg-image">
             <div>
-                <h1>Disigne By</h1>
+                <h1>Design By</h1>
                 <h2>Forum</h2>
             </div>
-
         </div>
+
     </section>
+    <span style="font-size:10px; margin-left: 150px;">    
+        <a href="https://pl.freepik.com/darmowe-zdjecie/model-demonstrujacy-kolczyki-i-pierscionek_13527449.htm#fromView=search&page=1&position=40&uuid=c52a8e7e-b073-447b-ad3c-20c586ade816" style="font-size: 10px;">Autor</a> Freepik
+    </span>
 
     <section id="fr-jewelry">
         <div class="pro-container">

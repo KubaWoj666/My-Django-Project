@@ -24,6 +24,7 @@ def home_view(request):
         images_urls = [image.image.url for image in my_item_images]
         item_data.append({"item": item, "images": images_urls})
     
+    print(item_data)
     context={
         "items": items,
         "item_data": item_data

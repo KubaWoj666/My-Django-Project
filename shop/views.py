@@ -123,23 +123,13 @@ def detail_shop_view(request, item_id):
 
 
 def calculator_view(request):
-     metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
      
+
      form = CalculateMetalPriceForm()
-
-     context = {
-          "metal_prices": metal_prices,
-          "form": form,
-          # "metal_valuation" : metal_valuation
-     }
-     return render(request, "shop/calculator.html", context)
-
-
-def calculate_price(request):
-     form = CalculateMetalPriceForm(request.POST or None)
      data = {}
 
      if is_ajax(request=request):
+          form = CalculateMetalPriceForm(request.POST or None)
           if form.is_valid():
                weight = form.cleaned_data.get("weight")
                data["weight"] = weight
@@ -148,8 +138,12 @@ def calculate_price(request):
                data["price"] = price
                metal_pricing = f"{weight * price:.2f}"
                data["metal_pricing"] = metal_pricing
-               data["status"] = "ok"
-               print(data)
-               
+               data["status"] = "ok"  
                return JsonResponse(data)
-     return JsonResponse({})
+
+     context = {
+          "form": form,
+     }
+     return render(request, "shop/calculator.html", context)
+
+

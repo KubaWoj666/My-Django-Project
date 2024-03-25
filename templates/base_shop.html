@@ -93,10 +93,12 @@
             </div>
             <div class="dropdown">
                 <button class="dropdown-btn">Forum Design</button>
-                <div class="dropdown-menu">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <div class="dropdown-menu">    
+                    {% for forum in forum_design %}
+                        <a href="{% url 'categories' forum.slug %}">{{forum.category_name}}</a> 
+                    {% endfor %} 
+                    <a href="{% url 'main_categories' forum_design.0.main_cat_name %}">Wszystkie</a>                  
+
                 </div>
             </div>
             <div class="dropdown">

@@ -45,7 +45,6 @@
                 {% render_field form.name class="form-control border-primary"  name="name" id="id_name"%}
             </div>
 
-
             <div class="forms-control-cat">
                 <div  id="category" class="forms-control {% if field.errors %} errors {% endif %} ">
                     <label>{{ form.category.label_tag }}</label>
@@ -53,7 +52,6 @@
                     {% render_field form.category class="form-control border-primary"  name="category" id="id_category"%}
                 </div>
                 <div class="btn">
-                    <!-- <a href="{% url 'add-category' %}?next={{item.id}}" class="btn btn-primary">Add Category</a> -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         New Category
                       </button>
@@ -146,23 +144,8 @@
     </div>
   </div>
 
-  <!-- <a href= "{% url 'get-categories' %}"></a>
-
-
-<script>
-    // Przypisz wynikowy URL do zmiennej JavaScript
-    var categoryUrl = "{% url 'get-categories' %}";
-  
-    // Możesz użyć tej zmiennej URL w swoim skrypcie JavaScript
-    console.log(categoryUrl);
-  </script>
-   -->
-
-
-
 <script src="{% static 'js/edit.js' %}"></script>
 
-<!-- {{ "{% url 'get-categories' %}"|json_script:"category_url"}} -->
 {% endblock content %}
 
 

@@ -1,4 +1,4 @@
-console.log("opa")
+// console.log("opa")
 
 const input = document.getElementById("id_image")
 const image_box = document.getElementById("image_box")
@@ -16,13 +16,13 @@ const category_input = document.getElementById("category_name");
 const main_category_input = document.getElementById("main_cat_name");
 
 const csrf = category_form.querySelector("[name='csrfmiddlewaretoken']")
-console.log(category_form.elements)
+// console.log(category_form.elements)
 var categoryUrl = "{% url 'get-categories' %}";
 
-console.log(categoryUrl)
+// console.log(categoryUrl)
 
 const select = document.getElementById("id_category")
-console.log(category_input.length)
+// console.log(category_input.length)
 
 
 
