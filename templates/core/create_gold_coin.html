@@ -1,0 +1,93 @@
+{% extends '_base.html' %}
+{% load static  %}
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="card border-0" style="width: 30rem;">
+        <div id="image_box">
+            <img id="image" src="{% static 'images/empty_f.jpeg' %}" class="card-img-top" style="width: 150px;" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+        </div>
+        <div>
+            <form  method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+    
+                <div  id="coin_image" class="forms-control {% if field.errors %} errors {% endif %} ">
+                    <label>{{ form.coin_image.label_tag }}</label>
+                    {{ form.coin_image.errors }}
+                    {% render_field form.coin_image class="form-control border-primary"  name="coin_image" id="id_coin_image"%}
+                </div>
+    
+                <div  id="coin_name" class="forms-control  {% if field.errors %} errors {% endif %} ">
+                    <label>{{ form.coin_name.label_tag }}</label>
+                    {{ form.coin_name.errors }}
+                    {% render_field form.coin_name class="form-control border-primary"  name="coin_name" id="id_coin_name"%}
+                </div>
+    
+                <div  id="coin_price" class="forms-control {% if field.errors %} errors {% endif %} ">
+                    <label>{{ form.coin_price.label_tag }}</label>
+                    {{ form.coin_price.errors }}
+                    {% render_field form.coin_price class="form-control border-primary"  name="coin_price" id="id_setting"%}
+                </div>
+    
+    
+                <button type="submit" class="btn btn-success mt-2 mb-5">Save</button>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+
+    <section id="price_table">
+        <div class="tbl-price" >
+            
+            <table class="table mt-5" style="width: 40rem;">
+                <thead>
+                  <tr class="table-primary">
+                    <th scope="col">Próba</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for metal in metal_prices  %}
+                    <tr class="table-light">
+                        <td>{{metal.material}} {{metal.grade}}</td>
+                        
+                        <td>{{metal.price}}zł/g</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="grade" id="grade" value="{{metal.grade}}">
+                                <input type="text" name="new_price"  id="new_price" placeholder="new price" required >
+                                <button type="submit" class="btn btn-success">Edit</button>
+                            </form>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </section>
+
+
+
+<script>
+const input = document.getElementById("id_coin_image")
+const image_box = document.getElementById("image_box")
+
+input.addEventListener("change", ()=>{
+    const image_data = input.files[0]
+    const url = URL.createObjectURL(image_data)
+    image_box.innerHTML = `<img id="image" src="${url}" class="card-img-top" alt="...">`
+})
+</script>
+    
+{% endblock content %}
+    

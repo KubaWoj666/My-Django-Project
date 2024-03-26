@@ -2,11 +2,11 @@ from typing import Any
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import  HttpResponse, JsonResponse
 
-from .models import Category, Item, Image, MetalPrice
-from .forms import ItemEditForm, CategoryForm, ImageForm, EditMetalPrices
+from .models import Category, Item, Image, MetalPrice, GoldCoin
+from .forms import ItemEditForm, CategoryForm, ImageForm, GoldCoinForm
 from sales.forms import SaleForm
 from .admin import ItemResources
-from django_htmx.http import HttpResponseClientRedirect
+from django_htmx.http import HttpResponseClientRedirect, HttpResponseClientRefresh
 
 
 
@@ -193,3 +193,21 @@ def edit_metal_prices(request):
 
     return render(request, "core/edit_metal_prices.html", context)
 
+
+def create_gold_coin(request):
+    form = GoldCoinForm()
+
+    if request.method == "POST":
+        form = GoldCoinForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect("gold_coin")
+
+    
+    context = {
+        "form": form
+    }
+    return render(request, "core/create_gold_coin.html", context)
+
+
+# def  

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 
-from core.models import Item, Category, MetalPrice
+from core.models import Item, GoldCoin
 from core.forms import CalculateMetalPriceForm
 
 from .utils import get_images
@@ -124,6 +124,7 @@ def detail_shop_view(request, item_id):
 
 def calculator_view(request):
      
+     gold_coins = GoldCoin.objects.all()
 
      form = CalculateMetalPriceForm()
      data = {}
@@ -143,6 +144,7 @@ def calculator_view(request):
 
      context = {
           "form": form,
+          "gold_coins": gold_coins
      }
      return render(request, "shop/calculator.html", context)
 

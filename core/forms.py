@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Item, Category, MainCategory, Image, MetalPrice
+from .models import Item, Category, MainCategory, Image, MetalPrice, GoldCoin
 
 class ItemEditForm(forms.ModelForm):
     class Meta:
@@ -43,3 +43,8 @@ class EditMetalPrices(forms.ModelForm):
         model = MetalPrice
         fields = "__all__"
 
+
+class GoldCoinForm(forms.ModelForm):
+    class Meta:
+        model = GoldCoin
+        fields = "__all__"

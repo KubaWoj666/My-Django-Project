@@ -8,6 +8,7 @@ urlpatterns = [
     path("detail/<uuid:pk>/", views.detail_view, name="core-detail"),
     path("edit/<uuid:pk>/", views.edit_item_view, name="edit"),
     path("edit-metal-prices", views.edit_metal_prices, name="edit_metal_prices"),
+    path("gold-coin", views.create_gold_coin, name="gold_coin" ),
     
     path("balance/", views.balance_view, name="balance"),
 

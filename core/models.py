@@ -78,3 +78,12 @@ class MetalPrice(models.Model):
 
     def __str__(self):
         return f"{self.material} - {self.grade} - {self.price} zł/g"
+
+
+class GoldCoin(models.Model):
+    coin_image = models.ImageField(upload_to="gold_coins", default="empty_f.jpeg", blank=True, null=True)
+    coin_name = models.CharField(max_length=100)
+    coin_price = models.DecimalField(max_digits=20, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.coin_name} - {self.coin_price}"
