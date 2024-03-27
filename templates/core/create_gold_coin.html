@@ -5,13 +5,14 @@
 
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
+    <div>
+        <h1>Nowa moneta</h1>
+    </div>
+    
     <div class="card border-0" style="width: 30rem;">
         <div id="image_box">
             <img id="image" src="{% static 'images/empty_f.jpeg' %}" class="card-img-top" style="width: 150px;" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
         </div>
         <div>
             <form  method="post" enctype="multipart/form-data" >
@@ -43,39 +44,12 @@
       </div>
     </div>
 
-    <section id="price_table">
-        <div class="tbl-price" >
-            
-            <table class="table mt-5" style="width: 40rem;">
-                <thead>
-                  <tr class="table-primary">
-                    <th scope="col">Próba</th>
-                    <th scope="col">Cena</th>
-                    <th scope="col">Edit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    
-                    {% for metal in metal_prices  %}
-                    <tr class="table-light">
-                        <td>{{metal.material}} {{metal.grade}}</td>
-                        
-                        <td>{{metal.price}}zł/g</td>
-                        <td>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="grade" id="grade" value="{{metal.grade}}">
-                                <input type="text" name="new_price"  id="new_price" placeholder="new price" required >
-                                <button type="submit" class="btn btn-success">Edit</button>
-                            </form>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                </tbody>
-              </table>
-        </div>
-    </section>
+   
+     
 
+    <section id="gold_coins_list" class="d-flex flex-column  mt-5">
+        {% include 'core/partials/gold_coin_list.html' %}
+    </section>
 
 
 <script>

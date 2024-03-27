@@ -7,7 +7,7 @@ from .forms import ItemEditForm, CategoryForm, ImageForm, GoldCoinForm
 from sales.forms import SaleForm
 from .admin import ItemResources
 from django_htmx.http import HttpResponseClientRedirect, HttpResponseClientRefresh
-
+from .permissions import admin_required
 
 
 
@@ -15,7 +15,7 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
-
+@admin_required
 def home_view(request):
     items = Item.objects.all()
     item_data = []
@@ -32,6 +32,7 @@ def home_view(request):
     return render(request,  "core/home.html", context )
 
 
+@admin_required
 def detail_view(request, pk):
     images = None
 
@@ -48,6 +49,8 @@ def detail_view(request, pk):
 
     return render(request, "core/detail.html", context)
 
+
+@admin_required
 def create_item_view(request):
     form = ItemEditForm()
     category_form = CategoryForm()
@@ -73,6 +76,7 @@ def create_item_view(request):
     return render(request, "core/create_item.html", context)
 
 
+@admin_required
 def edit_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
     category_form = CategoryForm()
@@ -107,6 +111,7 @@ def edit_item_view(request, pk):
     return render(request, "core/edit_item.html", context)
 
 
+@admin_required
 def delete_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
     next_url = request.GET.get("next")
@@ -114,8 +119,9 @@ def delete_item_view(request, pk):
     item.delete()
     
     return HttpResponseClientRedirect(next_url)
-    
 
+
+@admin_required
 def balance_view(request):
     items = Item.objects.filter(sold=False)
     item_data = []
@@ -147,7 +153,7 @@ def balance_view(request):
     }
     return render(request,  "core/bilans.html", context )
 
-
+@admin_required
 def create_category_view(request):
     form = CategoryForm(request.POST or None)
     data = {}
@@ -167,12 +173,13 @@ def create_category_view(request):
     return JsonResponse({})
 
 
+@admin_required
 def get_categories(request):
     categories = Category.objects.all().values("id", "category_name", "main_cat_name__main_name")
     return JsonResponse(list(categories), safe=False)
     
 
-
+@admin_required
 def edit_metal_prices(request):
     metal_prices = MetalPrice.objects.all().order_by("-material", "-grade")
 
@@ -193,8 +200,9 @@ def edit_metal_prices(request):
 
     return render(request, "core/edit_metal_prices.html", context)
 
-
+@admin_required
 def create_gold_coin(request):
+    gold_coins = GoldCoin.objects.all()
     form = GoldCoinForm()
 
     if request.method == "POST":
@@ -202,12 +210,36 @@ def create_gold_coin(request):
         if form.is_valid():
             form.save()
             return redirect("gold_coin")
-
+    
+    if request.htmx:
+        coin_id = request.POST.get("coin_id")
+        new_price = request.POST.get("new_price")
+        coin = gold_coins.get(id=coin_id)
+        coin.coin_price = new_price
+        coin.save()
+        return HttpResponseClientRefresh()
+       
+        
     
     context = {
-        "form": form
+        "form": form,
+        "gold_coins": gold_coins
     }
     return render(request, "core/create_gold_coin.html", context)
 
+@admin_required
+def  delete_cold_coin(request, coin_id):
 
-# def  
+    coin = get_object_or_404(GoldCoin, id=coin_id)
+    coin.delete()
+
+    gold_coins = GoldCoin.objects.all()
+
+    context = {
+        "gold_coins": gold_coins
+    }
+
+    return render(request, "core/partials/gold_coin_list.html", context)
+
+
+   

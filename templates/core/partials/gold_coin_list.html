@@ -1,0 +1,43 @@
+<section id="gold_coins" class="d-flex flex-column  mt-5">
+    <h1 class="d-flex justify-content-center">Sup złotych monet</h1>
+    <div class="d-flex justify-content-center">
+        <table class="table  "  style="width: 60rem;">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">Zdjęcie</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Cena skupu</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Usuń</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                
+                {% for coin in gold_coins  %}
+                <tr class="table-light">
+                    <td><img src="{{coin.coin_image.url}}" alt="" style="height: 150px;"></td>
+                    <td>{{coin.coin_name}}</td>
+                    <td>{{coin.coin_price}}zł</td>
+                    <td>
+                        <form hx-post="{% url 'gold_coin'%}">
+                            {% csrf_token %}
+                            <input type="hidden" name="coin_id" id="gold_coin_id", value="{{coin.id}}">
+                            <input type="text" name="new_price" id="gold_coin_new_price" placeholder="new price">
+                            <button class="btn btn-success" type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger"
+                        value="{{coin.id}}"
+                        hx-delete="{% url 'delete_coin' coin.id %}"
+                        hx-confirm="Czy na pewno chesz usunąć monetę {{coin.name}}"
+                        hx-target="#gold_coins_list"
+                        >Delete</button>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</section>

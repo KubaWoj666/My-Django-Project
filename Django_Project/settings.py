@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     #local
     'core',
     'sales',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'django_htmx',
     'import_export',
     'formtools',
+    
     
 
 ]
@@ -83,7 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                # custom context processors
                 'shop.context_processors.category_context',
                 'shop.context_processors.metal_prices_context'
             ],

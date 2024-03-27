@@ -4,12 +4,13 @@ from core.models import Item
 from .models import Sale
 from .forms import SaleForm, SaleSearchForm
 from .utils import get_item_name_by_item_id, get_chart, get_graph
+from core.permissions import admin_required
 
 import pandas as pd
 import json
 
 
-
+@admin_required
 @require_POST
 def create_sale_view(request):
     sale_form = SaleForm
@@ -31,6 +32,7 @@ def create_sale_view(request):
     return render(request, "core/partials/modal.html", context)
 
 
+@admin_required
 def get_all_sales_view(request):
     sales = Sale.objects.all()
     
@@ -40,6 +42,7 @@ def get_all_sales_view(request):
     return render(request, "sales/all_sales.html", context)
 
 
+@admin_required
 def sales_report(request):
     form = SaleSearchForm()
     sales_df = None
